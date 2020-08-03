@@ -1,0 +1,18 @@
+---
+:king:
+- :legal_moves: TODO
+
+:rock:
+- :legal_moves: TODO
+
+:bishop:
+- :legal_moves: TODO
+
+:queen:
+- :legal_moves: TODO
+
+:knight:
+- :legal_moves: TODO
+
+:pawn:
+- :legal_moves: TODO
