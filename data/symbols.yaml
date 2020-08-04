@@ -1,18 +1,45 @@
 ---
 :king:
-- :legal_moves: TODO
+- :legal_moves:
+  - [-1, 0]
+  - [1, 0]
+  - [0, 1]
+  - [0, -1]
+  - [1, 1]
+  - [1, -1]
+  - [-1, 1]
+  - [-1, -1]
 
-:rock:
-- :legal_moves: TODO
+:rook:
+- :legal_moves:
+  - [ENTIRE_ROW]
+  - [ENTIRE_COL]
+- :jump_over:  false
+
 
 :bishop:
-- :legal_moves: TODO
+- :legal_moves: 
+  - [DIAGONALS]
+
+- :jump_over:  false
+
 
 :queen:
 - :legal_moves: TODO
 
 :knight:
-- :legal_moves: TODO
+- :legal_moves: 
+  - [1, 2]
+  - [1, -2]
+  - [-1, 2]
+  - [-1, -2]
+  - [2, 1]
+  - [2, -1]
+  - [-2, 1]
+  - [-2, -1]                                    
 
 :pawn:
-- :legal_moves: TODO
+- :legal_moves: 
+  - [FORWARD_2]
+  - [FORWARD_1]
+  - [DIAG_1_TAKE]
