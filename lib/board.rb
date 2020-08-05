@@ -1,14 +1,12 @@
-
-
 class Piece
   attr_accessor :name, :legal_moves
   def initialize(name, legal_moves)
     @name = name
     @legal_moves = legal_moves
-    
   end
 
   def check_move(destination)
+    # TODO
     true
   end
 
@@ -25,6 +23,8 @@ P = Piece.new("P", "todo")
 
 
 class Board
+  attr_accessor :board_config
+
   def initialize
     @dim = 8
     @board_config = Array.new(@dim){Array.new(@dim)}
@@ -73,11 +73,25 @@ class Board
     end
   end #print b
 
+  def find(piece)
+    @board_config.each_with_index do |subarray, i|
+      j = subarray.index(piece)
+      return [i, j] if j
+    end
+    nil
+  end
+
+  def reset(loc)
+    if @board_config
+      @board_config[loc[0]][loc[1]] = nil
+    end
+  end
+
   def move(piece, destination)
     if piece.check_move(destination)
-
+      prev_loc = find(piece)
       @board_config[destination[0]][destination[1]] = piece
-      #@board_config[piece.position]
+      reset(prev_loc)
     end
   end
 

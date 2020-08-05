@@ -25,7 +25,10 @@
 
 
 :queen:
-- :legal_moves: TODO
+- :legal_moves: 
+  - [ENTIRE_ROW]
+  - [ENTIRE_COL]
+  - [DIAGONALS]
 
 :knight:
 - :legal_moves: 
@@ -40,6 +43,6 @@
 
 :pawn:
 - :legal_moves: 
-  - [FORWARD_2]
-  - [FORWARD_1]
-  - [DIAG_1_TAKE]
+  - [2, 0]
+  - [1, 0]
+  - [1, 1]
