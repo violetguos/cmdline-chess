@@ -1,61 +1,42 @@
-class Piece
-  attr_accessor :name, :legal_moves
-  def initialize(name, legal_moves)
-    @name = name
-    @legal_moves = legal_moves
-  end
-
-  def check_move(destination)
-    # TODO
-    true
-  end
-
-end # class
-
-R = Piece.new("R", "todo")
-N = Piece.new("N", "todo")
-B = Piece.new("B", "todo")
-K = Piece.new("K", "todo")
-Q = Piece.new("Q", "todo")
-
-P = Piece.new("P", "todo")
-
-
+require_relative 'piece'
 
 class Board
-  attr_accessor :board_config
-
+  attr_accessor :board_config, :pieces
   def initialize
+
     @dim = 8
     @board_config = Array.new(@dim){Array.new(@dim)}
+    extend White
+
+    @pieces = White::pieces()
     board_start
   end
 
   def board_start
     # fill the board with pieces
     # rook
-    @board_config[0][0] = R
-    @board_config[0][1] = N 
-    @board_config[0][2] = B
-    @board_config[0][3] = K
-    @board_config[0][4] = Q
-    @board_config[0][5] = B
-    @board_config[0][6] = N
-    @board_config[0][7] = R
+    @board_config[0][0] = @pieces[:rook]
+    @board_config[0][1] = @pieces[:knight]
+    @board_config[0][2] = @pieces[:bishop]
+    @board_config[0][3] = @pieces[:king]
+    @board_config[0][4] = @pieces[:queen]
+    @board_config[0][5] = @pieces[:bishop] 
+    @board_config[0][6] = @pieces[:knight]
+    @board_config[0][7] = @pieces[:rook] 
 
-    @board_config[@dim-1][0] = R
-    @board_config[@dim-1][1] = N 
-    @board_config[@dim-1][2] = B
-    @board_config[@dim-1][3] = K
-    @board_config[@dim-1][4] = Q
-    @board_config[@dim-1][5] = B
-    @board_config[@dim-1][6] = N
-    @board_config[@dim-1][7] = R
+    @board_config[@dim-1][0] = @pieces[:rook]
+    @board_config[@dim-1][1] = @pieces[:knight]
+    @board_config[@dim-1][2] = @pieces[:bishop]
+    @board_config[@dim-1][3] = @pieces[:king]
+    @board_config[@dim-1][4] = @pieces[:queen]
+    @board_config[@dim-1][5] = @pieces[:bishop] 
+    @board_config[@dim-1][6] = @pieces[:knight]
+    @board_config[@dim-1][7] = @pieces[:rook] 
 
     # pawns
     for i in 0...@dim
-      @board_config[1][i] = P
-      @board_config[@dim-2][i] = P
+      @board_config[1][i] = @pieces[:pawn] 
+      @board_config[@dim-2][i] = @pieces[:pawn] 
     end
   end #board_start
 
@@ -65,7 +46,7 @@ class Board
         if !@board_config[i][j]
           print "_"
         else
-          print @board_config[i][j].name
+          print @board_config[i][j].unicode
         end
         print "|"
       end
@@ -74,7 +55,10 @@ class Board
   end #print b
 
   def find(piece)
+
     @board_config.each_with_index do |subarray, i|
+      #binding.pry
+
       j = subarray.index(piece)
       return [i, j] if j
     end
@@ -82,7 +66,8 @@ class Board
   end
 
   def reset(loc)
-    if @board_config
+
+    if @board_config && @board_config[loc[0]]
       @board_config[loc[0]][loc[1]] = nil
     end
   end
@@ -90,6 +75,7 @@ class Board
   def move(piece, destination)
     if piece.check_move(destination)
       prev_loc = find(piece)
+      p "prev_loc, #{prev_loc}"
       @board_config[destination[0]][destination[1]] = piece
       reset(prev_loc)
     end
@@ -100,5 +86,5 @@ end
 b = Board.new
 b.print_b
 puts 
-b.move(Q, [3, 2])
+b.move(b.pieces[:queen], [3, 2])
 b.print_b

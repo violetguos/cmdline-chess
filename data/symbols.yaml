@@ -1,6 +1,6 @@
 ---
 :king:
-- :legal_moves:
+ :legal_moves:
   - [-1, 0]
   - [1, 0]
   - [0, 1]
@@ -9,40 +9,43 @@
   - [1, -1]
   - [-1, 1]
   - [-1, -1]
+ :unicode: K
 
 :rook:
-- :legal_moves:
+ :legal_moves:
   - [ENTIRE_ROW]
   - [ENTIRE_COL]
-- :jump_over:  false
-
+ :jump_over:  false
+ :unicode: R
 
 :bishop:
-- :legal_moves: 
-  - [DIAGONALS]
-
-- :jump_over:  false
-
+  :legal_moves: 
+    - [DIAGONALS]
+  :jump_over:  false
+  :unicode: B
 
 :queen:
-- :legal_moves: 
-  - [ENTIRE_ROW]
-  - [ENTIRE_COL]
-  - [DIAGONALS]
+  :legal_moves: 
+    - [ENTIRE_ROW]
+    - [ENTIRE_COL]
+    - [DIAGONALS]
+  :unicode: Q
 
 :knight:
-- :legal_moves: 
-  - [1, 2]
-  - [1, -2]
-  - [-1, 2]
-  - [-1, -2]
-  - [2, 1]
-  - [2, -1]
-  - [-2, 1]
-  - [-2, -1]                                    
+  :legal_moves: 
+    - [1, 2]
+    - [1, -2]
+    - [-1, 2]
+    - [-1, -2]
+    - [2, 1]
+    - [2, -1]
+    - [-2, 1]
+    - [-2, -1] 
+  :unicode: N                                   
 
 :pawn:
-- :legal_moves: 
-  - [2, 0]
-  - [1, 0]
-  - [1, 1]
+  :legal_moves: 
+    - [2, 0]
+    - [1, 0]
+    - [1, 1]
+  :unicode: P
