@@ -14,24 +14,24 @@
 
 :rook:
  :legal_moves:
-  - [ENTIRE_ROW]
-  - [ENTIRE_COL]
+  - ENTIRE_ROW
+  - ENTIRE_COL
  :jump_over:  false
  :unicode: R
  :total: 2
 
 :bishop:
   :legal_moves: 
-    - [DIAGONALS]
+    - DIAGONALS
   :jump_over:  false
   :unicode: B
   :total: 2
 
 :queen:
   :legal_moves: 
-    - [ENTIRE_ROW]
-    - [ENTIRE_COL]
-    - [DIAGONALS]
+    - ENTIRE_ROW
+    - ENTIRE_COL
+    - DIAGONALS
   :unicode: Q
   :total: 1
 
@@ -50,8 +50,6 @@
 
 :pawn:
   :legal_moves: 
-    - [2, 0]
-    - [1, 0]
-    - [1, 1]
+    - PAWN
   :unicode: P
   :total: 8

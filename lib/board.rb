@@ -38,8 +38,6 @@ class Board
     # fill the board with pieces
     half_board_start(@white_pieces, 0)
     half_board_start(@black_pieces, @dim-1)
-
-    
   end #board_start
 
   def print_b
@@ -74,10 +72,43 @@ class Board
   end
 
   def move(piece, destination)
-    if piece.check_move(destination)
-      prev_loc = find(piece)
+    prev_loc = find(piece)
+    p prev_loc
+    if piece.check_move(prev_loc, destination)
       @board_config[destination[0]][destination[1]] = piece
       reset(prev_loc)
+    end
+  end
+
+  def check_new_loc(curr, x, y, legal_moves)
+    legal_moves.each_with_index do |move, i|
+      p curr[0]
+      p move[0]
+      if curr[0] + move[0] == x && curr[1] + move[1] == y
+        return true 
+      end
+    end
+    false
+  end
+
+  def visual_legal_moves(piece)
+    piece.legal_moves = piece.all_possible_moves(find(piece))
+    
+    for i in 0...@dim
+      for j in 0...@dim
+        if !@board_config[i][j]
+          print "_"
+
+        elsif check_new_loc(find(piece), i, j, piece.legal_moves)
+          print @board_config[i][j].unicode
+
+        else
+          print @board_config[i][j].unicode
+        end
+
+        print "|"
+      end
+      print "\n"
     end
   end
 
@@ -86,7 +117,13 @@ end
 b = Board.new
 b.print_b
 puts 
-b.move(b.white_pieces[:queen][0], [3, 2])
-b.move(b.black_pieces[:queen][0], [2, 2])
+b.move(b.white_pieces[:pawn][0], [3, 0])
+b.move(b.black_pieces[:pawn][0], [4, 0])
 
 b.print_b
+
+# puts
+# b = Board.new
+# b.visual_legal_moves(b.white_pieces[:queen][0])
+
+#b.visual_legal_moves(b.white_pieces[:bishop][0])

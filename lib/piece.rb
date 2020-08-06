@@ -1,18 +1,108 @@
 require 'YAML'
 require 'pry'
+require_relative 'constants'
 
 class Piece
-  attr_accessor :name, :legal_moves , :unicode
-  def initialize(name, legal_moves, unicode, total)
+  attr_accessor :name, :legal_moves , :unicode, :player
+  def initialize(name, legal_moves, unicode, total, player)
     @name = name
-    #@legal_moves = legal_moves
+    @legal_moves = legal_moves 
     @unicode = unicode
     @total = total
+    @player = player
+  end
+
+  def go_diag(curr)
+    moves = []
+    x = curr[0]
+    y = curr[1]
+    while x > 0 && y > 0
+      if x!= curr[0] && y!=curr[1]
+        moves.push([x, y])
+      end
+      x -= 1
+      y -= 1
+    end
+
+    x = curr[0]
+    y = curr[1]
+    while x < @dim && y > 0
+      if x!= curr[0] && y!=curr[1]
+        moves.push([x, y])
+      end
+      x += 1
+      y -= 1
+    end
+
+    x = curr[0]
+    y = curr[1]
+    while x > 0 && y < @dim
+      if x!= curr[0] && y!=curr[1]
+        moves.push([x, y])
+      end
+      x -= 1
+      y += 1
+    end
+
+    x = curr[0]
+    y = curr[1]
+    while x < @dim && y < @dim
+      if x!= curr[0] && y!=curr[1]
+        moves.push([x, y])
+      end
+      x += 1
+      y += 1
+    end
+    return moves
+
   end
   
-  def check_move(destination)
-    # TODO
-    true
+  def all_possible_moves(curr)
+    if @legal_moves.any? String
+        
+      p "all_possible_moves"
+      moves = []
+      @legal_moves.each  do |m|
+
+        case m
+        when ROW
+          for i in 0...@dim
+            moves.push([curr[0], i]) if i!=curr[1]
+          end
+        
+        when COL
+          for i in 0...@dim
+            moves.push([i, curr[1]]) if i!=curr[0]
+          end
+
+        when DIAGS
+          moves = go_diag(curr)  
+
+        when "PAWN"
+          if curr[0] == 1 && @player == "W"
+            moves.push([2, curr[1]])
+          elsif curr[0]== 6 && @player == "B"
+            moves.push([-2, curr[1]])
+          elsif @player == "W"
+            moves.push([1, curr[1]])
+          elsif @player == "B"
+            moves.push([-1, curr[1]])
+          end
+        end
+      end
+      @legal_moves = moves
+  end
+  end
+
+  def check_move(curr, destination)
+    all_possible_moves(curr)
+    p @legal_moves
+    @legal_moves.each do |m|
+      if m[0] + curr[0] == destination[0] && m[1] + curr[1] == destination[1]
+        return true
+      end
+    end
+    false
   end
   
 end # class
@@ -24,7 +114,7 @@ module White
     data_hash.each do |key, value|
       white_pieces[key] = []
       for i in 0...value[:total]
-        piece = Piece.new(key.to_s, value[:legal_moves], value[:unicode], value[:total])
+        piece = Piece.new(key.to_s, value[:legal_moves], value[:unicode], value[:total], "W")
         white_pieces[key].push(piece)
       end
     end
@@ -39,7 +129,7 @@ module Black
     data_hash.each do |key, value|
       pieces[key] = []
       for i in 0...value[:total]
-        piece = Piece.new(key.to_s, value[:legal_moves], value[:unicode], value[:total])
+        piece = Piece.new(key.to_s, value[:legal_moves], value[:unicode], value[:total], "B")
         pieces[key].push(piece)
       end
     end
