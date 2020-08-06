@@ -32,6 +32,18 @@ module White
   end
 end
 
+module Black
+  def self.pieces()
+    pieces = {}
+    data_hash = YAML.load(File.read("data/symbols.yaml"))
+    data_hash.each do |key, value|
+      pieces[key] = []
+      for i in 0...value[:total]
+        piece = Piece.new(key.to_s, value[:legal_moves], value[:unicode], value[:total])
+        pieces[key].push(piece)
+      end
+    end
+    return pieces
+  end
+end
 
-#p h
-#TODO: how to add multiple pawns

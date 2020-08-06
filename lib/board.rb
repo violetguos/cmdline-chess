@@ -1,43 +1,45 @@
 require_relative 'piece'
 
 class Board
-  attr_accessor :board_config, :pieces
+  attr_accessor :board_config, :white_pieces, :black_pieces
   def initialize
 
     @dim = 8
     @board_config = Array.new(@dim){Array.new(@dim)}
 
-    @pieces = White::pieces()
+    @white_pieces = White::pieces()
+    @black_pieces = Black::pieces()
     #p @pieces
     board_start
   end
 
-  def board_start
-    # fill the board with pieces
-    # rook
-    @board_config[0][0] = @pieces[:rook][0]
-    @board_config[0][1] = @pieces[:knight][0]
-    @board_config[0][2] = @pieces[:bishop][0]
-    @board_config[0][3] = @pieces[:king][0]
-    @board_config[0][4] = @pieces[:queen][0]
-    @board_config[0][5] = @pieces[:bishop][1] 
-    @board_config[0][6] = @pieces[:knight][1]
-    @board_config[0][7] = @pieces[:rook][1]
-
-    # @board_config[@dim-1][0] = @pieces[:rook]
-    # @board_config[@dim-1][1] = @pieces[:knight]
-    # @board_config[@dim-1][2] = @pieces[:bishop]
-    # @board_config[@dim-1][3] = @pieces[:king]
-    # @board_config[@dim-1][4] = @pieces[:queen]
-    # @board_config[@dim-1][5] = @pieces[:bishop] 
-    # @board_config[@dim-1][6] = @pieces[:knight]
-    # @board_config[@dim-1][7] = @pieces[:rook] 
+  def half_board_start(pieces, start_idx)
+    @board_config[start_idx][0] = pieces[:rook][0]
+    @board_config[start_idx][1] = pieces[:knight][0]
+    @board_config[start_idx][2] = pieces[:bishop][0]
+    @board_config[start_idx][3] = pieces[:king][0]
+    @board_config[start_idx][4] = pieces[:queen][0]
+    @board_config[start_idx][5] = pieces[:bishop][1] 
+    @board_config[start_idx][6] = pieces[:knight][1]
+    @board_config[start_idx][7] = pieces[:rook][1]
 
     # pawns
-    for i in 0...@dim
-      @board_config[1][i] = @pieces[:pawn][i]
-      @board_config[@dim-2][i] = @pieces[:pawn][i] 
+    if start_idx == 0
+      pawn_idx = start_idx + 1
+    else
+      pawn_idx = start_idx - 1
     end
+    for i in 0...@dim
+      @board_config[pawn_idx][i] = pieces[:pawn][i]
+    end
+  end
+
+  def board_start
+    # fill the board with pieces
+    half_board_start(@white_pieces, 0)
+    half_board_start(@black_pieces, @dim-1)
+
+    
   end #board_start
 
   def print_b
@@ -84,5 +86,7 @@ end
 b = Board.new
 b.print_b
 puts 
-b.move(b.pieces[:queen][0], [3, 2])
+b.move(b.white_pieces[:queen][0], [3, 2])
+b.move(b.black_pieces[:queen][0], [2, 2])
+
 b.print_b
