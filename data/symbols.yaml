@@ -10,6 +10,7 @@
   - [-1, 1]
   - [-1, -1]
  :unicode: K
+ :total: 1 
 
 :rook:
  :legal_moves:
@@ -17,12 +18,14 @@
   - [ENTIRE_COL]
  :jump_over:  false
  :unicode: R
+ :total: 2
 
 :bishop:
   :legal_moves: 
     - [DIAGONALS]
   :jump_over:  false
   :unicode: B
+  :total: 2
 
 :queen:
   :legal_moves: 
@@ -30,6 +33,7 @@
     - [ENTIRE_COL]
     - [DIAGONALS]
   :unicode: Q
+  :total: 1
 
 :knight:
   :legal_moves: 
@@ -41,7 +45,8 @@
     - [2, -1]
     - [-2, 1]
     - [-2, -1] 
-  :unicode: N                                   
+  :unicode: N
+  :total: 2                                
 
 :pawn:
   :legal_moves: 
@@ -49,3 +54,4 @@
     - [1, 0]
     - [1, 1]
   :unicode: P
+  :total: 8
