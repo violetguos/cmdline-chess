@@ -80,11 +80,10 @@ class Board
     end
   end
 
-  def check_new_loc(curr, x, y, legal_moves)
+  def check_new_loc(x, y, legal_moves)
     legal_moves.each_with_index do |move, i|
-      p curr[0]
-      p move[0]
-      if curr[0] + move[0] == x && curr[1] + move[1] == y
+      
+      if  move[0] == x &&  move[1] == y
         return true 
       end
     end
@@ -93,17 +92,18 @@ class Board
 
   def visual_legal_moves(piece)
     piece.legal_moves = piece.all_possible_moves(find(piece))
-    
+    destinations = []
+    curr = find(piece)
+
     for i in 0...@dim
       for j in 0...@dim
-        if !@board_config[i][j]
-          print "_"
-
-        elsif check_new_loc(find(piece), i, j, piece.legal_moves)
-          print @board_config[i][j].unicode
+        if check_new_loc(i, j, piece.legal_moves)
+          print piece.unicode
 
         else
-          print @board_config[i][j].unicode
+            print "_"
+
+        
         end
 
         print "|"
@@ -114,16 +114,27 @@ class Board
 
 end
 
-b = Board.new
-b.print_b
-puts 
-b.move(b.white_pieces[:pawn][0], [3, 0])
-b.move(b.black_pieces[:pawn][0], [4, 0])
-
-b.print_b
-
-# puts
 # b = Board.new
-# b.visual_legal_moves(b.white_pieces[:queen][0])
+# b.print_b
+# puts 
+# b.move(b.white_pieces[:pawn][0], [3, 0])
+# b.move(b.black_pieces[:pawn][0], [4, 0])
 
-#b.visual_legal_moves(b.white_pieces[:bishop][0])
+# b.print_b
+
+puts
+b = Board.new
+# p b.white_pieces[:knight][0].legal_moves
+# b.board_config[0][1] = nil
+# b.board_config[2][5] = b.white_pieces[:knight][0]
+# b.print_b
+# b.visual_legal_moves(b.white_pieces[:knight][0])
+
+
+p b.white_pieces[:bishop][0].legal_moves
+b.board_config[0][2] = nil
+
+b.board_config[2][5] = b.white_pieces[:bishop][0]
+b.print_b
+
+b.visual_legal_moves(b.white_pieces[:bishop][0])

@@ -10,13 +10,14 @@ class Piece
     @unicode = unicode
     @total = total
     @player = player
+    @dim = 8
   end
 
   def go_diag(curr)
     moves = []
     x = curr[0]
     y = curr[1]
-    while x > 0 && y > 0
+    while x >= 0 && y >= 0
       if x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
@@ -26,7 +27,7 @@ class Piece
 
     x = curr[0]
     y = curr[1]
-    while x < @dim && y > 0
+    while x < @dim && y >= 0
       if x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
@@ -36,7 +37,7 @@ class Piece
 
     x = curr[0]
     y = curr[1]
-    while x > 0 && y < @dim
+    while x >= 0 && y < @dim
       if x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
@@ -58,40 +59,39 @@ class Piece
   end
   
   def all_possible_moves(curr)
+    p @legal_moves.any? String
     if @legal_moves.any? String
-        
-      p "all_possible_moves"
       moves = []
       @legal_moves.each  do |m|
-
         case m
         when ROW
-          for i in 0...@dim
+          for i in 0...8
             moves.push([curr[0], i]) if i!=curr[1]
           end
         
         when COL
-          for i in 0...@dim
+          for i in 0...8
             moves.push([i, curr[1]]) if i!=curr[0]
           end
 
         when DIAGS
-          moves = go_diag(curr)  
+          go_diag(curr).each {|a| moves.push(a)}
 
         when "PAWN"
           if curr[0] == 1 && @player == "W"
-            moves.push([2, curr[1]])
+            moves.push([2+curr[0], curr[1]])
           elsif curr[0]== 6 && @player == "B"
-            moves.push([-2, curr[1]])
+            moves.push([-2+curr[0], curr[1]])
           elsif @player == "W"
-            moves.push([1, curr[1]])
+            moves.push([1+curr[0], curr[1]])
           elsif @player == "B"
-            moves.push([-1, curr[1]])
+            moves.push([-1+curr[0], curr[1]])
           end
         end
       end
       @legal_moves = moves
-  end
+    end
+    @legal_moves
   end
 
   def check_move(curr, destination)
