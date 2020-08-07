@@ -1,6 +1,6 @@
 ---
 :king:
- :legal_moves:
+ :default_moves:
   - [-1, 0]
   - [1, 0]
   - [0, 1]
@@ -13,30 +13,34 @@
  :total: 1 
 
 :rook:
- :legal_moves:
-  - ENTIRE_ROW
-  - ENTIRE_COL
+ :default_moves:
+  nil
  :jump_over:  false
  :unicode: R
  :total: 2
 
 :bishop:
-  :legal_moves: 
-    - DIAGONALS
+  :default_moves: 
+    nil
   :jump_over:  false
   :unicode: B
   :total: 2
 
 :queen:
-  :legal_moves: 
-    - ENTIRE_ROW
-    - ENTIRE_COL
-    - DIAGONALS
+  :default_moves: 
+  - [-1, 0]
+  - [1, 0]
+  - [0, 1]
+  - [0, -1]
+  - [1, 1]
+  - [1, -1]
+  - [-1, 1]
+  - [-1, -1]
   :unicode: Q
   :total: 1
 
 :knight:
-  :legal_moves: 
+  :default_moves: 
     - [1, 2]
     - [1, -2]
     - [-1, 2]
@@ -49,7 +53,7 @@
   :total: 2                                
 
 :pawn:
-  :legal_moves: 
-    - PAWN
+  :default_moves: 
+    nil
   :unicode: P
   :total: 8

@@ -9,7 +9,6 @@ class Board
 
     @white_pieces = White::pieces()
     @black_pieces = Black::pieces()
-    #p @pieces
     board_start
   end
 
@@ -57,7 +56,6 @@ class Board
   def find(piece)
 
     @board_config.each_with_index do |subarray, i|
-
       j = subarray.index(piece)
       return [i, j] if j
     end
@@ -69,11 +67,12 @@ class Board
     if @board_config && @board_config[loc[0]]
       @board_config[loc[0]][loc[1]] = nil
     end
+
   end
 
   def move(piece, destination)
     prev_loc = find(piece)
-    p prev_loc
+
     if piece.check_move(prev_loc, destination)
       @board_config[destination[0]][destination[1]] = piece
       reset(prev_loc)
@@ -82,7 +81,6 @@ class Board
 
   def check_new_loc(x, y, legal_moves)
     legal_moves.each_with_index do |move, i|
-      
       if  move[0] == x &&  move[1] == y
         return true 
       end
@@ -99,11 +97,8 @@ class Board
       for j in 0...@dim
         if check_new_loc(i, j, piece.legal_moves)
           print piece.unicode
-
         else
             print "_"
-
-        
         end
 
         print "|"
@@ -131,10 +126,11 @@ b = Board.new
 # b.visual_legal_moves(b.white_pieces[:knight][0])
 
 
-p b.white_pieces[:bishop][0].legal_moves
-b.board_config[0][2] = nil
+b.visual_legal_moves(b.white_pieces[:bishop][0])
+puts
 
-b.board_config[2][5] = b.white_pieces[:bishop][0]
+b.move(b.white_pieces[:bishop][0], [2, 4])
+
 b.print_b
 
 b.visual_legal_moves(b.white_pieces[:bishop][0])
