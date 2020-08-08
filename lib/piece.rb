@@ -60,13 +60,13 @@ class Piece
   end
 
   def go_row(curr, moves)
-    for i in 0...8
+    for i in 0...@dim
       moves.push([curr[0], i]) if i!=curr[1]
     end
   end
 
   def go_col(curr, moves)
-    for i in 0...8
+    for i in 0...@dim
       moves.push([i, curr[1]]) if i!=curr[0]
     end 
   end
@@ -90,6 +90,16 @@ class Piece
     end 
   end
 
+  def check_boundary
+    checked_moves = []
+    @legal_moves.each do |m|
+      if !(m[0] < 0 || m[0] >= @dim || m[1]<0 || m[1] >= @dim)
+        checked_moves.push(m)
+      end
+    end
+    @legal_moves = checked_moves
+  end
+
   def all_possible_moves(curr)
       # no boundary checking or taking or obstacle detection yet
       moves = []
@@ -106,7 +116,7 @@ class Piece
       when QUEEN
         go_diag(curr).each {|a| moves.push(a)}
         go_col(curr, moves)
-        go_col(curr, moves)
+        go_row(curr, moves)
         go(curr, moves)
         @legal_moves = moves
 
@@ -117,7 +127,8 @@ class Piece
         go(curr, moves)
       
       end
-        
+    check_boundary
+    @legal_moves = @legal_moves.uniq
     @legal_moves
   end
 

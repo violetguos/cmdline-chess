@@ -117,8 +117,8 @@ end
 
 # b.print_b
 
-puts
-b = Board.new
+# puts
+# b = Board.new
 # p b.white_pieces[:knight][0].legal_moves
 # b.board_config[0][1] = nil
 # b.board_config[2][5] = b.white_pieces[:knight][0]
@@ -126,11 +126,11 @@ b = Board.new
 # b.visual_legal_moves(b.white_pieces[:knight][0])
 
 
-b.visual_legal_moves(b.white_pieces[:bishop][0])
-puts
+# b.visual_legal_moves(b.white_pieces[:bishop][0])
+# puts
 
-b.move(b.white_pieces[:bishop][0], [2, 4])
+# b.move(b.white_pieces[:bishop][0], [2, 4])
 
-b.print_b
+# b.print_b
 
-b.visual_legal_moves(b.white_pieces[:bishop][0])
+# b.visual_legal_moves(b.white_pieces[:bishop][0])
