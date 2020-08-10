@@ -76,6 +76,8 @@ class Board
     if piece.check_move(prev_loc, destination)
       @board_config[destination[0]][destination[1]] = piece
       reset(prev_loc)
+    else
+      puts "Illegal move"
     end
   end
 
@@ -107,30 +109,14 @@ class Board
     end
   end
 
+  def random_move
+    # random piece, random move
+    rand_piece = @black_pieces[@black_pieces.keys.sample][0]
+    curr_loc = find(rand_piece)
+    rand_piece.legal_moves = rand_piece.all_possible_moves(curr_loc)
+    dest = rand_piece.legal_moves.sample
+    move(rand_piece, dest)
+  end
+
 end
 
-# b = Board.new
-# b.print_b
-# puts 
-# b.move(b.white_pieces[:pawn][0], [3, 0])
-# b.move(b.black_pieces[:pawn][0], [4, 0])
-
-# b.print_b
-
-# puts
-# b = Board.new
-# p b.white_pieces[:knight][0].legal_moves
-# b.board_config[0][1] = nil
-# b.board_config[2][5] = b.white_pieces[:knight][0]
-# b.print_b
-# b.visual_legal_moves(b.white_pieces[:knight][0])
-
-
-# b.visual_legal_moves(b.white_pieces[:bishop][0])
-# puts
-
-# b.move(b.white_pieces[:bishop][0], [2, 4])
-
-# b.print_b
-
-# b.visual_legal_moves(b.white_pieces[:bishop][0])

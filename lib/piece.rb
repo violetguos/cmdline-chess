@@ -125,6 +125,7 @@ class Piece
        @legal_moves = moves
       else 
         go(curr, moves)
+        @legal_moves = moves
       
       end
     check_boundary
@@ -134,8 +135,6 @@ class Piece
 
   def check_move(curr, destination)
     @legal_moves = all_possible_moves(curr)
-    p @name, @legal_moves
-
     @legal_moves.each do |m|
       if m[0] == destination[0] && m[1] == destination[1]
         return true

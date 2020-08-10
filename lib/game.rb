@@ -11,12 +11,12 @@ class Game
   def prompt
     @board.print_b
     puts "Enter piece: "
-    piece = gets.strip.chars
+    piece = gets.chomp
     puts "Enter target column: "
     col = gets.strip.to_i
-    puts "Enter target column: "
+    puts "Enter target row: "
     row = gets.strip.to_i
-    @board.move(@board.white_pieces[:pawn][0],[row, col])
+    @board.move(@board.white_pieces[piece.to_sym][0],[row, col])
     @board.print_b
 
   end
@@ -36,7 +36,12 @@ class Game
     Marshal.load(File.binread("game"))
   end
 
+  def turns
+    prompt
+    @board.random_move
+    @board.print_b
+  end
 end
 
 g = Game.new
-g.prompt
+g.turns
