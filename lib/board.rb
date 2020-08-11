@@ -82,6 +82,7 @@ class Board
   end
 
   def check_new_loc(x, y, legal_moves)
+    # check if [x ,y] is legal
     legal_moves.each_with_index do |move, i|
       if  move[0] == x &&  move[1] == y
         return true 
@@ -109,12 +110,24 @@ class Board
     end
   end
 
+  def check_occupancy(loc)
+    if @board_config[loc[0]][loc[1]] != nil
+      return true
+    else 
+      return false
+    end
+  end
+
   def random_move
     # random piece, random move
     rand_piece = @black_pieces[@black_pieces.keys.sample][0]
     curr_loc = find(rand_piece)
     rand_piece.legal_moves = rand_piece.all_possible_moves(curr_loc)
-    dest = rand_piece.legal_moves.sample
+    dest = nil
+    loop do
+      dest = rand_piece.legal_moves.sample
+      break if !check_occupancy(dest)
+    end
     move(rand_piece, dest)
   end
 
