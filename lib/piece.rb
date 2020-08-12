@@ -59,15 +59,25 @@ class Piece
 
   end
 
-  def go_row(curr, moves)
+  def go_row(curr, moves, board)
     for i in 0...@dim
-      moves.push([curr[0], i]) if i!=curr[1]
+      if board[curr[0]][i]
+        # no jumping
+        break
+      else
+        moves.push([curr[0], i]) if i!=curr[1]
+      end
     end
   end
 
-  def go_col(curr, moves)
+  def go_col(curr, moves, board)
     for i in 0...@dim
-      moves.push([i, curr[1]]) if i!=curr[0]
+      if board[i][curr[1]]
+        # no jumping
+        break
+      else
+        moves.push([i, curr[1]]) if i!=curr[0]
+      end
     end 
   end
 
@@ -84,9 +94,16 @@ class Piece
     end
   end
 
-  def go(curr, moves)
+  def go(curr, moves, board)
+    p "default #{@default_moves}"
     @default_moves.each do |m|
-      moves.push([m[0] + curr[0], m[1]+curr[1]])
+      row = m[0] + curr[0]
+      col = m[1]+curr[1]
+      if board[row] && board[row][col]
+        break
+      else
+        moves.push([row, col])
+      end
     end 
   end
 
@@ -100,13 +117,14 @@ class Piece
     @legal_moves = checked_moves
   end
 
-  def all_possible_moves(curr)
+  def all_possible_moves(curr, board)
       # no boundary checking or taking or obstacle detection yet
+      
       moves = []
       case @name
       when ROOK
-        go_col(curr, moves)
-        go_row(curr, moves)
+        go_col(curr, moves, board)
+        go_row(curr, moves, board)
         @legal_moves = moves 
       
       when BISHOP
@@ -115,16 +133,16 @@ class Piece
 
       when QUEEN
         go_diag(curr).each {|a| moves.push(a)}
-        go_col(curr, moves)
-        go_row(curr, moves)
-        go(curr, moves)
+        go_col(curr, moves, board)
+        go_row(curr, moves, board)
+        go(curr, moves, board)
         @legal_moves = moves
 
       when PAWN 
        go_pawn(curr, moves)
        @legal_moves = moves
       else 
-        go(curr, moves)
+        go(curr, moves, board)
         @legal_moves = moves
       
       end
@@ -133,8 +151,8 @@ class Piece
     @legal_moves
   end
 
-  def check_move(curr, destination)
-    @legal_moves = all_possible_moves(curr)
+  def check_move(curr, destination, board)
+    @legal_moves = all_possible_moves(curr, board)
     @legal_moves.each do |m|
       if m[0] == destination[0] && m[1] == destination[1]
         return true

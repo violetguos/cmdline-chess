@@ -73,7 +73,7 @@ class Board
   def move(piece, destination)
     prev_loc = find(piece)
 
-    if piece.check_move(prev_loc, destination)
+    if piece.check_move(prev_loc, destination, @board_config)
       @board_config[destination[0]][destination[1]] = piece
       reset(prev_loc)
     else
@@ -92,7 +92,7 @@ class Board
   end
 
   def visual_legal_moves(piece)
-    piece.legal_moves = piece.all_possible_moves(find(piece))
+    piece.legal_moves = piece.all_possible_moves(find(piece), @board_config)
     destinations = []
     curr = find(piece)
 
@@ -119,15 +119,26 @@ class Board
   end
 
   def random_move
+    impossible_pieces = []
+    possible_destinations = nil
     # random piece, random move
     rand_piece = @black_pieces[@black_pieces.keys.sample][0]
-    curr_loc = find(rand_piece)
-    rand_piece.legal_moves = rand_piece.all_possible_moves(curr_loc)
-    dest = nil
+
+    # keep sampling piece & move. filter out illegal moves and pieces w/o any mobility
     loop do
-      dest = rand_piece.legal_moves.sample
-      break if !check_occupancy(dest)
+      while impossible_pieces.include?(rand_piece)
+        rand_piece = @black_pieces[@black_pieces.keys.sample][0]
+      end
+      curr_loc = find(rand_piece)
+      rand_piece.legal_moves = rand_piece.all_possible_moves(curr_loc, @board_config)
+      if rand_piece.legal_moves.empty?
+        impossible_pieces.push(rand_piece)
+      end
+      break if !rand_piece.legal_moves.empty?
     end
+    
+
+    dest = rand_piece.legal_moves.sample
     move(rand_piece, dest)
   end
 
@@ -138,6 +149,8 @@ class Board
       reset([row, col])
     end
   end
+
+
 
 end
 

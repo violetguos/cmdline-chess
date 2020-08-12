@@ -43,7 +43,7 @@ class Game
   end
 
   def turns
-    prompt
+    #prompt
     @board.random_move
     @board.print_b
   end
