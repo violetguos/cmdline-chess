@@ -14,12 +14,15 @@ class Piece
     @default_moves = default_moves
   end
 
-  def go_diag(curr)
+  def go_diag(curr, board)
     moves = []
     x = curr[0]
     y = curr[1]
     while x >= 0 && y >= 0
-      if x!= curr[0] && y!=curr[1]
+      if board[x][y]
+        # no jumping
+        break
+      elsif x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
       x -= 1
@@ -29,7 +32,10 @@ class Piece
     x = curr[0]
     y = curr[1]
     while x < @dim && y >= 0
-      if x!= curr[0] && y!=curr[1]
+      if board[x][y]
+        # no jumping
+        break
+      elsif x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
       x += 1
@@ -39,7 +45,10 @@ class Piece
     x = curr[0]
     y = curr[1]
     while x >= 0 && y < @dim
-      if x!= curr[0] && y!=curr[1]
+      if board[x][y]
+        # no jumping
+        break
+      elsif x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
       x -= 1
@@ -49,7 +58,10 @@ class Piece
     x = curr[0]
     y = curr[1]
     while x < @dim && y < @dim
-      if x!= curr[0] && y!=curr[1]
+      if board[x][y]
+        # no jumping
+        break
+      elsif x!= curr[0] && y!=curr[1]
         moves.push([x, y])
       end
       x += 1
@@ -128,11 +140,11 @@ class Piece
         @legal_moves = moves 
       
       when BISHOP
-        go_diag(curr).each {|a| moves.push(a)}
+        go_diag(curr, board).each {|a| moves.push(a)}
         @legal_moves = moves
 
       when QUEEN
-        go_diag(curr).each {|a| moves.push(a)}
+        go_diag(curr, board).each {|a| moves.push(a)}
         go_col(curr, moves, board)
         go_row(curr, moves, board)
         go(curr, moves, board)

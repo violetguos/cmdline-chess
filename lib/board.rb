@@ -122,8 +122,8 @@ class Board
     impossible_pieces = []
     possible_destinations = nil
     # random piece, random move
-    rand_piece = @black_pieces[@black_pieces.keys.sample][0]
-
+    rand_arr= @black_pieces[@black_pieces.keys.sample]
+    rand_piece = rand_arr.sample
     # keep sampling piece & move. filter out illegal moves and pieces w/o any mobility
     loop do
       while impossible_pieces.include?(rand_piece)
