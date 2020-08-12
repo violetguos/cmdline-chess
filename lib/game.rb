@@ -16,6 +16,12 @@ class Game
     col = gets.strip.to_i
     puts "Enter target row: "
     row = gets.strip.to_i
+    puts "Overtake [y/n]: "
+    overtake = gets.chomp == "y"? true : false
+    if overtake
+      @board.overtake(row, col)
+    end 
+    
     @board.move(@board.white_pieces[piece.to_sym][0],[row, col])
     @board.print_b
 

@@ -131,5 +131,13 @@ class Board
     move(rand_piece, dest)
   end
 
+  def overtake(row, col)
+    if @board_config[row][col]
+      piece = @board_config[row][col]
+      # TODO check score
+      reset([row, col])
+    end
+  end
+
 end
 
