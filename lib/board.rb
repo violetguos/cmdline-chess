@@ -45,7 +45,7 @@ class Board
         if !@board_config[i][j]
           print "_"
         else
-          print @board_config[i][j].unicode
+          print @board_config[i][j].unicode.to_s.encode("utf-8")
         end
         print "|"
       end

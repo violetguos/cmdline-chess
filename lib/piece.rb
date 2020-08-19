@@ -178,7 +178,7 @@ end # class
 module White
   def self.pieces()
     white_pieces = {}
-    data_hash = YAML.load(File.read("data/symbols.yaml"))
+    data_hash = YAML.load(File.read("data/symbols.yaml", :encoding => "UTF-8"))
     data_hash.each do |key, value|
       white_pieces[key] = []
       for i in 0...value[:total]
@@ -193,7 +193,7 @@ end
 module Black
   def self.pieces()
     pieces = {}
-    data_hash = YAML.load(File.read("data/symbols.yaml"))
+    data_hash = YAML.load(File.read("data/symbols.yaml", :encoding => "UTF-8"))
     data_hash.each do |key, value|
       pieces[key] = []
       for i in 0...value[:total]

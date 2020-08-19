@@ -12,6 +12,12 @@ class Game
     @board.print_b
     puts "Enter piece: "
     piece = gets.chomp
+    puts "Enter current col: "
+    col_curr = gets.strip.to_i
+    
+    puts "Enter current row: "
+    row_curr = gets.strip.to_i
+
     puts "Enter target column: "
     col = gets.strip.to_i
     puts "Enter target row: "
@@ -22,7 +28,7 @@ class Game
       @board.overtake(row, col)
     end 
     
-    @board.move(@board.white_pieces[piece.to_sym][0],[row, col])
+    @board.move(@board.board_config[row_curr][col_curr],[row, col])
     @board.print_b
 
   end
@@ -43,9 +49,13 @@ class Game
   end
 
   def turns
-    #prompt
-    @board.random_move
-    @board.print_b
+    i = 0
+    while i < 3 
+      prompt
+      @board.random_move
+      @board.print_b
+      i+=1
+    end
   end
 end
 
