@@ -32,5 +32,47 @@ class Arr2D
     @array_2d[x][y] = val
   end
 
+  def get_row(loc)
+    # look up a row directly from the 2D coordinate
+    @array_2d[loc.x]
+  end
+
+  def set_row(loc, val)
+    @array_2d[loc.x] = val
+  end
+
+  def get_col(loc)
+    arr = []
+    @array_2d.each_with_index do |subarr, i|
+      arr.push(subarr[loc.y])
+    end
+    arr
+  end
+
+  def set_col(loc, val)
+    # set column to value array
+    # assume val has the same dim as array_2d's column
+    @array_2d.each_with_index do |subarr, i|
+      subarr[loc.y] = val[i]
+    end
+  end
+
+  def diag(loc)
+		raise NotImplementedError.new("You must implement #{__method__}.")
+  end
+
+  def p
+    for i in 0...@dim
+      for j in 0...@dim
+        if !@array_2d[i][j]
+          print "_"
+        else
+          print @array_2d[i][j]
+        end
+        print "|"
+      end
+      print "\n"
+    end
+  end
   
 end

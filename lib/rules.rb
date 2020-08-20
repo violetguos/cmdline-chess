@@ -11,7 +11,8 @@ module Rules
 		raise NotImplementedError.new("You must implement #{__method__}.")
 	end
 
-	def occupancy
+	def occupancy(board, destination)
+    # can be done with arr2d [] operator
 		raise NotImplementedError.new("You must implement #{__method__}.")
 
 	end
