@@ -23,12 +23,14 @@ class Arr2D
   def [](x, y)
     #coordinate look up with []
     #return @board[coord.x][coord.y]
+    raise "Coord out of boundary" unless (x>= 0 && x<@dim && y>=0 && y<@dim)
     @array_2d[x][y]
   end
 
   def []=(x, y, val)
     #coordinate set to val with []
     # @board[coord.x][coord.y] = val
+    raise "Coord out of boundary" unless (x>= 0 && x<@dim && y>=0 && y<@dim)
     @array_2d[x][y] = val
   end
 
@@ -57,8 +59,29 @@ class Arr2D
     end
   end
 
-  def diag(loc)
-		raise NotImplementedError.new("You must implement #{__method__}.")
+  def get_diag
+    ## get diagonals
+    diag_l_r = [] # \ dir
+    diag_r_l = [] # / dir
+
+    # direction \, up
+    x = @dim - 1
+    y = @dim - 1
+    while x >= 0 && y >= 0
+      diag_r_l.push(@array_2d[x][y])
+      x -= 1
+      y -= 1
+    end
+
+    # direction /, up
+    x = 0
+    y = @dim - 1
+    while x < @dim && y >= 0
+      diag_l_r.push(@array_2d[x][y])
+      x += 1
+      y -= 1
+    end
+    return diag_r_l, diag_l_r
   end
 
   def p

@@ -15,82 +15,17 @@ class Piece
   end
 
   def go_diag(curr, board)
-    moves = []
-    x = curr[0]
-    y = curr[1]
-    while x >= 0 && y >= 0
-      if board[x][y]
-        # no jumping
-        break
-      elsif x!= curr[0] && y!=curr[1]
-        moves.push([x, y])
-      end
-      x -= 1
-      y -= 1
-    end
-
-    x = curr[0]
-    y = curr[1]
-    while x < @dim && y >= 0
-      if board[x][y]
-        # no jumping
-        break
-      elsif x!= curr[0] && y!=curr[1]
-        moves.push([x, y])
-      end
-      x += 1
-      y -= 1
-    end
-
-    x = curr[0]
-    y = curr[1]
-    while x >= 0 && y < @dim
-      if board[x][y]
-        # no jumping
-        break
-      elsif x!= curr[0] && y!=curr[1]
-        moves.push([x, y])
-      end
-      x -= 1
-      y += 1
-    end
-
-    x = curr[0]
-    y = curr[1]
-    while x < @dim && y < @dim
-      if board[x][y]
-        # no jumping
-        break
-      elsif x!= curr[0] && y!=curr[1]
-        moves.push([x, y])
-      end
-      x += 1
-      y += 1
-    end
-    return moves
-
+    raise NotImplementedError.new("refactored #{__method__}.")
   end
 
   def go_row(curr, moves, board)
-    for i in 0...@dim
-      if board[curr[0]][i]
-        # no jumping
-        break
-      else
-        moves.push([curr[0], i]) if i!=curr[1]
-      end
-    end
+    raise NotImplementedError.new("refactored #{__method__}.")
+
   end
 
   def go_col(curr, moves, board)
-    for i in 0...@dim
-      if board[i][curr[1]]
-        # no jumping
-        break
-      else
-        moves.push([i, curr[1]]) if i!=curr[0]
-      end
-    end 
+    raise NotImplementedError.new("refactored #{__method__}.")
+
   end
 
   def go_pawn(curr, moves)
