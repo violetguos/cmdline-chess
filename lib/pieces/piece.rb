@@ -1,6 +1,6 @@
 class Piece
-  attr_accessor :name, :legal_moves , :unicode, :player, :default_moves
-  def initialize(name, unicode, total, player)
+  attr_reader :name, :legal_moves , :unicode, :player, :default_moves
+  def initialize(name, unicode, player)
     @name = name
     @unicode = unicode
     @player = player
