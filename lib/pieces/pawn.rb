@@ -1,6 +1,7 @@
 require_relative 'piece.rb'
 
 class Pawn < Piece
+
   def forward(loc)
     if @player == "W"
       loc+=1
@@ -32,3 +33,4 @@ class Pawn < Piece
 
 
 end
+

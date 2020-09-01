@@ -84,13 +84,17 @@ class Arr2D
     return diag_r_l, diag_l_r
   end
 
-  def p
+  def p(unicode=false)
     for i in 0...@dim
       for j in 0...@dim
         if !@array_2d[i][j]
           print "_"
         else
-          print @array_2d[i][j]
+          if !unicode
+            print @array_2d[i][j]
+          else
+            print @array_2d[i][j].unicode.encode('utf-8')
+          end
         end
         print "|"
       end
