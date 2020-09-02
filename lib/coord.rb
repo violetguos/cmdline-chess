@@ -36,7 +36,11 @@ class Arr2D
 
   def get_row(loc)
     # look up a row directly from the 2D coordinate
-    @array_2d[loc.x]
+    row = []
+    for i in 0...@dim do
+      row.append(Coord2D.new(loc.x, i))
+    end
+    row
   end
 
   def set_row(loc, val)
@@ -46,7 +50,7 @@ class Arr2D
   def get_col(loc)
     arr = []
     @array_2d.each_with_index do |subarr, i|
-      arr.push(subarr[loc.y])
+      arr.push(Coord2D.new(i, loc.y))
     end
     arr
   end
