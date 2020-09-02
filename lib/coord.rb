@@ -14,7 +14,7 @@ class Arr2D
     # find a given obj's location
     @array_2d.each_with_index do |subarray, i|
       j = subarray.index(obj)
-      return Coord2D(i, j) if j
+      return Coord2D.new(i, j) if j
     end
     nil
 

@@ -1,13 +1,10 @@
 require_relative 'piece.rb'
+require_relative '../constants.rb'
+require_relative '../coord.rb'
 
 class Rook < Piece
-  def move(board, loc, player)
-    # horizontal or vertical
-    # somehow call 
-    
-    # board.get_col
-    # board.get_row
-    # check the jumping
-    
+  def icon
+    # define unicode here instead of 
+
   end
 end
