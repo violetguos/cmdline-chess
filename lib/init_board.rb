@@ -4,8 +4,8 @@ require_relative 'pieces/piece.rb'
 require_relative 'constants.rb'
 
 def init(board)
-  row_pawn_white = 1
-  row_other_white = 0
+  row_pawn_white = 7
+  row_other_white = 6
   rook = Rook.new('rook', "\u2656", W)
   board[row_other_white, 0] = rook
 
@@ -36,8 +36,8 @@ def init(board)
   end
 
 
-  row_other_black = 7
-  row_pawn_black = 6
+  row_other_black = 1
+  row_pawn_black = 0
   rook = Rook.new('rook', "\u265C", B)
   board[row_other_black, 0] = rook
 

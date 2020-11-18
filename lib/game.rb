@@ -13,9 +13,10 @@ class Game
 
   end
 
-  def prompt
+  def prompt(player)
     @board.p
-    puts 'Enter current col: '
+    puts "Current player #{player}"
+    puts 'Enter current colmnn: '
     # converts board notation to array position
     col_curr = gets.strip.ord - 'a'.ord 
 
@@ -56,7 +57,8 @@ class Game
   def turns
     i = 0
     while i < 3
-      prompt
+      i%2==0 ? player = W : player = B
+      prompt(player)
       i += 1
     end
   end
