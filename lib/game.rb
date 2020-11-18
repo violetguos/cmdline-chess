@@ -1,36 +1,42 @@
 require_relative 'board'
-
+require_relative 'coord'
 
 class Game
   attr_accessor :board
   def initialize
-    @board = Board.new
+    @board = Arr2D.new(8)
+    pawn = Pawn.new('pawn', "\u2659", W)
+    @board[1, 0] = pawn
+    rook = Rook.new('rook', "\u2659", W)
+    @board[0, 0] = rook
+    @board.p
 
   end
 
   def prompt
-    @board.print_b
-    puts "Enter piece: "
-    piece = gets.chomp
+    @board.p
     puts "Enter current col: "
-    col_curr = gets.strip.to_i
+    # converts board notation to array position
+    col_curr = gets.strip.to_i - 1
     
     puts "Enter current row: "
-    row_curr = gets.strip.to_i
+    row_curr = gets.strip.ord - "a".ord
+    curr = Coord2D.new(row_curr, col_curr)
 
     puts "Enter target column: "
-    col = gets.strip.to_i
+    col = gets.strip.to_i - 1
     puts "Enter target row: "
-    row = gets.strip.to_i
-    puts "Overtake [y/n]: "
-    overtake = gets.chomp == "y"? true : false
-    if overtake
-      @board.overtake(row, col)
-    end 
-    
-    @board.move(@board.board_config[row_curr][col_curr],[row, col])
-    @board.print_b
+    row = gets.strip.ord - "a".ord
+    target = Coord2D.new(row, col)
+    move(curr, target)
 
+  end
+
+  def move(curr, target)
+    # process the positions
+    curr_piece = @board[curr.x, curr.y]
+    @board[target.x, target.y] = curr_piece
+    @board[curr.x, curr.y] = nil
   end
 
   def save
@@ -52,8 +58,7 @@ class Game
     i = 0
     while i < 3 
       prompt
-      @board.random_move
-      @board.print_b
+      @board.p
       i+=1
     end
   end

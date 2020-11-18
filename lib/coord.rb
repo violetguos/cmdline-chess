@@ -34,35 +34,6 @@ class Arr2D
     @array_2d[x][y] = val
   end
 
-  def get_row(loc)
-    # look up a row directly from the 2D coordinate
-    row = []
-    for i in 0...@dim do
-      row.append(Coord2D.new(loc.x, i))
-    end
-    row
-  end
-
-  def set_row(loc, val)
-    @array_2d[loc.x] = val
-  end
-
-  def get_col(loc)
-    arr = []
-    @array_2d.each_with_index do |subarr, i|
-      arr.push(Coord2D.new(i, loc.y))
-    end
-    arr
-  end
-
-  def set_col(loc, val)
-    # set column to value array
-    # assume val has the same dim as array_2d's column
-    @array_2d.each_with_index do |subarr, i|
-      subarr[loc.y] = val[i]
-    end
-  end
-
   def get_diag
     ## get diagonals
     diag_l_r = [] # \ dir
@@ -88,22 +59,32 @@ class Arr2D
     return diag_r_l, diag_l_r
   end
 
-  def p(unicode=false)
+  def p
     for i in 0...@dim
       for j in 0...@dim
         if !@array_2d[i][j]
           print "_"
         else
-          if !unicode
+          if !@array_2d[i][j].unicode
             print @array_2d[i][j]
           else
             print @array_2d[i][j].unicode.encode('utf-8')
           end
         end
+       
         print "|"
+        
       end
-      print "\n"
+      rank = i + "a".ord
+      rank = rank.chr
+      print "#{rank}\n"
     end
+
+    for i in 0...@dim
+      print "#{i+1}|"
+    end
+    print "\n"
+
   end
   
 end

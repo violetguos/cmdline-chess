@@ -4,7 +4,6 @@ class Piece
     @name = name
     @unicode = unicode
     @player = player
-    @legal_moves = []
     @moved = false
   end
 

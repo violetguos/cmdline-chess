@@ -22,12 +22,5 @@ class Pawn < Piece
     step
   end
 
-  def move_ovetake
-
-  end
-
-
-
-
 end
 

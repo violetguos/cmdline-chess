@@ -10,23 +10,12 @@ class Board
     @array2d[1, 0] = pawn
     rook = Rook.new('rook', "R", W)
     @array2d[0, 0] = rook
-    @array2d.p(unicode=true)
+    @array2d.p
     
   end
 
   def move(piece)
-    # we need coordinates of the potential destinations
-    case piece 
-    when Rook
-      p @array2d.get_col(@array2d.find(piece))
-      p @array2d.get_row(@array2d.find(piece))
-    when Pawn
-      if piece.moved
-        p piece.usual_move
-      else 
-        p piece.first_move
-      end
-    end
+ 
     
   end
 
