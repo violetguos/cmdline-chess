@@ -1,14 +1,43 @@
 require_relative 'coord'
 require_relative 'pieces/pawn.rb'
 require_relative 'pieces/rook.rb'
+require_relative 'pieces/piece.rb'
+require_relative 'constants'
+
 class Game
   attr_accessor :board
   def initialize
     @board = Arr2D.new(8)
-    pawn = Pawn.new('pawn', "\u2659", W)
-    @board[1, 0] = pawn
-    rook = Rook.new('rook', "\u2659", W)
+
+    rook = Rook.new('rook', "\u2656", W)
     @board[0, 0] = rook
+
+    rook = Rook.new('rook', "\u2656", W)
+    @board[0, 7] = rook
+
+    knight = Piece.new('knight', "\u2658", W)
+    @board[0, 1] = knight
+
+    knight = Piece.new('knight', "\u2658", W)
+    @board[0, 6] = knight
+
+    bishop = Piece.new('bishop', "\u2657", W)
+    @board[0, 2] = bishop
+
+    bishop = Piece.new('bishop', "\u2657", W)
+    @board[0, 5] = bishop
+
+    queen = Piece.new('queen', "\u2655", W)
+    @board[0, 3] = queen
+
+    king = Piece.new('king', "\u2654", W)
+    @board[0, 4] = king
+
+    for i in 0...8 do
+      pawn = Pawn.new('pawn', "\u2659", W)
+      @board[1, i] = pawn
+    end
+
     @board.p
   end
 
