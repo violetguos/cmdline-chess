@@ -1,8 +1,6 @@
-require_relative 'coord'
-require_relative 'pieces/pawn.rb'
-require_relative 'pieces/rook.rb'
-require_relative 'pieces/piece.rb'
-require_relative 'constants'
+require_relative 'coord.rb'
+require_relative 'constants.rb'
+require_relative 'rules'
 
 class Game
   attr_accessor :board
@@ -34,6 +32,10 @@ class Game
 
   def move(curr, target)
     # process the positions
+    if !Rules.boundry(target)
+      raise "not of bound"
+    end
+
     curr_piece = @board[curr.x, curr.y]
     @board[target.x, target.y] = curr_piece
     @board[curr.x, curr.y] = nil
