@@ -1,6 +1,6 @@
-require_relative 'board'
 require_relative 'coord'
-
+require_relative 'pieces/pawn.rb'
+require_relative 'pieces/rook.rb'
 class Game
   attr_accessor :board
   def initialize
@@ -10,26 +10,24 @@ class Game
     rook = Rook.new('rook', "\u2659", W)
     @board[0, 0] = rook
     @board.p
-
   end
 
   def prompt
     @board.p
-    puts "Enter current col: "
+    puts 'Enter current col: '
     # converts board notation to array position
     col_curr = gets.strip.to_i - 1
-    
-    puts "Enter current row: "
-    row_curr = gets.strip.ord - "a".ord
+
+    puts 'Enter current row: '
+    row_curr = gets.strip.ord - 'a'.ord
     curr = Coord2D.new(row_curr, col_curr)
 
-    puts "Enter target column: "
+    puts 'Enter target column: '
     col = gets.strip.to_i - 1
-    puts "Enter target row: "
-    row = gets.strip.ord - "a".ord
+    puts 'Enter target row: '
+    row = gets.strip.ord - 'a'.ord
     target = Coord2D.new(row, col)
     move(curr, target)
-
   end
 
   def move(curr, target)
@@ -40,26 +38,26 @@ class Game
   end
 
   def save
-    puts "Would you like to save game? [y/n]"
+    puts 'Would you like to save game? [y/n]'
     ans = gets.chomp
-    if ans.downcase == "y"
-        File.open('game', 'w+') do |f|  
-            f.write(Marshal.dump(self))
-        end  
+    if ans.downcase == 'y'
+      File.open('game', 'w+') do |f|
+        f.write(Marshal.dump(self))
+      end
     end
-    return true 
+    true
   end
 
   def self.load
-    Marshal.load(File.binread("game"))
+    Marshal.load(File.binread('game'))
   end
 
   def turns
     i = 0
-    while i < 3 
+    while i < 3
       prompt
       @board.p
-      i+=1
+      i += 1
     end
   end
 end

@@ -5,11 +5,10 @@ class Arr2D
   attr_accessor :dim, :array_2d
 
   def initialize(dim)
-
     @dim = dim
-    @array_2d = Array.new(@dim){Array.new(@dim)}
-
+    @array_2d = Array.new(@dim) { Array.new(@dim) }
   end
+
   def find(obj)
     # find a given obj's location
     @array_2d.each_with_index do |subarray, i|
@@ -17,20 +16,21 @@ class Arr2D
       return Coord2D.new(i, j) if j
     end
     nil
-
   end
 
   def [](x, y)
-    #coordinate look up with []
-    #return @board[coord.x][coord.y]
-    raise "Coord out of boundary" unless (x>= 0 && x<@dim && y>=0 && y<@dim)
+    # coordinate look up with []
+    # return @board[coord.x][coord.y]
+    raise 'Coord out of boundary' unless x >= 0 && x < @dim && y >= 0 && y < @dim
+
     @array_2d[x][y]
   end
 
   def []=(x, y, val)
-    #coordinate set to val with []
+    # coordinate set to val with []
     # @board[coord.x][coord.y] = val
-    raise "Coord out of boundary" unless (x>= 0 && x<@dim && y>=0 && y<@dim)
+    raise 'Coord out of boundary' unless x >= 0 && x < @dim && y >= 0 && y < @dim
+
     @array_2d[x][y] = val
   end
 
@@ -56,14 +56,14 @@ class Arr2D
       x += 1
       y -= 1
     end
-    return diag_r_l, diag_l_r
+    [diag_r_l, diag_l_r]
   end
 
   def p
-    for i in 0...@dim
-      for j in 0...@dim
+    (0...@dim).each do |i|
+      (0...@dim).each do |j|
         if !@array_2d[i][j]
-          print "_"
+          print '_'
         else
           if !@array_2d[i][j].unicode
             print @array_2d[i][j]
@@ -71,20 +71,17 @@ class Arr2D
             print @array_2d[i][j].unicode.encode('utf-8')
           end
         end
-       
-        print "|"
-        
+
+        print '|'
       end
-      rank = i + "a".ord
+      rank = i + 'a'.ord
       rank = rank.chr
       print "#{rank}\n"
     end
 
-    for i in 0...@dim
-      print "#{i+1}|"
+    (0...@dim).each do |i|
+      print "#{i + 1}|"
     end
     print "\n"
-
   end
-  
 end

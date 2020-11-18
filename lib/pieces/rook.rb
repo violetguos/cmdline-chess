@@ -4,7 +4,6 @@ require_relative '../coord.rb'
 
 class Rook < Piece
   def icon
-    # define unicode here instead of 
-
+    # define unicode here instead of
   end
 end

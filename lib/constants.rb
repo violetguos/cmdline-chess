@@ -1,8 +1,8 @@
-KING = "king"
-ROOK = "rook"
-BISHOP = "bishop"
-QUEEN = "queen"
-KNIGHT = "knight"
-PAWN = "pawn"
-B = 'Black'
-W = 'White'
+KING = 'king'.freeze
+ROOK = 'rook'.freeze
+BISHOP = 'bishop'.freeze
+QUEEN = 'queen'.freeze
+KNIGHT = 'knight'.freeze
+PAWN = 'pawn'.freeze
+B = 'Black'.freeze
+W = 'White'.freeze
