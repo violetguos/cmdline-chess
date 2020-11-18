@@ -11,7 +11,6 @@ class Game
     require_relative 'init_board'
     init(@board)
 
-    @board.p
   end
 
   def prompt
@@ -58,7 +57,6 @@ class Game
     i = 0
     while i < 3
       prompt
-      @board.p
       i += 1
     end
   end
