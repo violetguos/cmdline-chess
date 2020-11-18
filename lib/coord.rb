@@ -74,13 +74,14 @@ class Arr2D
 
         print '|'
       end
-      rank = i + 'a'.ord
-      rank = rank.chr
-      print "#{rank}\n"
+      # chess board convention
+      print "#{8-i}\n"
     end
 
     (0...@dim).each do |i|
-      print "#{i + 1}|"
+      rank = i + 'a'.ord
+      rank = rank.chr
+      print "#{rank}|"
     end
     print "\n"
   end
