@@ -18,8 +18,14 @@ describe Arr2D do
     b[1, 1] = 1
     b[0, 2] = 0
     # NOTE: it's not a list of 2 lists, only required for rspec syntax
-    b.p
     expect(b.get_diag).to eql([[2, 1, 0], [0, 1, 2]])
+  end
+
+  it "performs arithmetic" do 
+    loc = Coord2D.new(2, 1)
+    dest = Coord2D.new(1, 1)
+    res = loc + dest
+    expect(res).to eql(Coord2D.new(3, 2))
   end
 end
   

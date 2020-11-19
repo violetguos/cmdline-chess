@@ -12,5 +12,10 @@ module Rules
     false
   end
 
+  def Rules.knight(knight, curr, target)
+    # verify the L shape
+    #if curr.x - target.x == 2 
+  end
+
 
 end

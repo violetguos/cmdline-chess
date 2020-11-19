@@ -1,4 +1,8 @@
-Coord2D = Struct.new(:x, :y)
+Coord2D = Struct.new(:x, :y) do
+  def +(obj)
+    Coord2D.new(self.x + obj.x ,  self.y + obj.y) 
+  end
+end
 
 class Arr2D
   # define a 2d coordinate system independent of chess
