@@ -19,26 +19,28 @@ class Game
     col_curr = gets.strip.ord - 'a'.ord 
 
     puts 'Enter current row: '
-    row_curr = 8-gets.strip.to_i 
+    row_curr = 8 - gets.strip.to_i 
     curr = Coord2D.new(row_curr, col_curr)
 
     puts 'Enter target column: '
     col = gets.strip.ord - 'a'.ord
     puts 'Enter target row: '
-    row = 8-gets.strip.to_i 
+    row = 8 - gets.strip.to_i 
     target = Coord2D.new(row, col)
-    move(curr, target)
+    curr_piece = @board[curr.x, curr.y]
+    if Rules.pawn(curr_piece, curr, target)
+      move(curr, target)
+    else 
+      raise 'you broke rules'
+    end
   end
 
   def move(curr, target)
     # process the positions
-    if !Rules.boundry(target)
-      raise "not of bound"
-    end
-
     curr_piece = @board[curr.x, curr.y]
     @board[target.x, target.y] = curr_piece
     @board[curr.x, curr.y] = nil
+    curr_piece.moved = true
   end
 
   def save
@@ -66,5 +68,3 @@ class Game
   end
 end
 
-g = Game.new
-g.turns

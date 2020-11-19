@@ -1,15 +1,13 @@
-require_relative 'pieces/pawn.rb'
-require_relative 'pieces/rook.rb'
-require_relative 'pieces/piece.rb'
+require_relative 'piece.rb'
 require_relative 'constants.rb'
 
 def init(board)
   row_pawn_white = 6
   row_other_white = 7
-  rook = Rook.new('rook', "\u2656", W)
+  rook = Piece.new('rook', "\u2656", W)
   board[row_other_white, 0] = rook
 
-  rook = Rook.new('rook', "\u2656", W)
+  rook = Piece.new('rook', "\u2656", W)
   board[row_other_white, 7] = rook
 
   knight = Piece.new('knight', "\u2658", W)
@@ -31,17 +29,17 @@ def init(board)
   board[row_other_white, 4] = king
 
   for i in 0...8 do
-    pawn = Pawn.new('pawn', "\u2659", W)
+    pawn = Piece.new('pawn', "\u2659", W)
     board[row_pawn_white, i] = pawn
   end
 
 
   row_other_black = 0
   row_pawn_black = 1
-  rook = Rook.new('rook', "\u265C", B)
+  rook = Piece.new('rook', "\u265C", B)
   board[row_other_black, 0] = rook
 
-  rook = Rook.new('rook', "\u265C", B)
+  rook = Piece.new('rook', "\u265C", B)
   board[row_other_black, 7] = rook
 
   knight = Piece.new('knight', "\u265E", B)
@@ -63,7 +61,7 @@ def init(board)
   board[row_other_black, 4] = king
 
   for i in 0...8 do
-    pawn = Pawn.new('pawn', "\u265F", B)
+    pawn = Piece.new('pawn', "\u265F", B)
     board[row_pawn_black, i] = pawn
   end
 
