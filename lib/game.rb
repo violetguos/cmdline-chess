@@ -28,7 +28,7 @@ class Game
     row = 8 - gets.strip.to_i 
     target = Coord2D.new(row, col)
     curr_piece = @board[curr.x, curr.y]
-    if Rules.pawn(curr_piece, curr, target)
+    if Rules.knight(curr_piece, curr, target)
       move(curr, target)
     else 
       raise 'you broke rules'
