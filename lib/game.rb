@@ -13,6 +13,18 @@ class Game
 
   def prompt(player)
     @board.p
+    curr = get_current_piece(player)
+    target = get_destination
+    
+    curr_piece = @board[curr.x, curr.y]
+    if Rules.knight(curr_piece, curr, target)
+      move(curr, target)
+    else 
+      raise 'you broke rules'
+    end
+  end
+
+  def get_current_piece(player)
     puts "Current player #{player}"
     puts 'Enter current colmnn: '
     # converts board notation to array position
@@ -21,18 +33,16 @@ class Game
     puts 'Enter current row: '
     row_curr = 8 - gets.strip.to_i 
     curr = Coord2D.new(row_curr, col_curr)
+    curr
+  end 
 
+  def get_destination
     puts 'Enter target column: '
     col = gets.strip.ord - 'a'.ord
     puts 'Enter target row: '
     row = 8 - gets.strip.to_i 
     target = Coord2D.new(row, col)
-    curr_piece = @board[curr.x, curr.y]
-    if Rules.knight(curr_piece, curr, target)
-      move(curr, target)
-    else 
-      raise 'you broke rules'
-    end
+    target
   end
 
   def move(curr, target)
