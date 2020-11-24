@@ -22,6 +22,10 @@ class Arr2D
     nil
   end
 
+  def is_available?(coord)
+    @array_2d[coord.x][coord.y] == nil ? true : false
+  end
+
   def [](x, y)
     # coordinate look up with []
     # return @board[coord.x][coord.y]

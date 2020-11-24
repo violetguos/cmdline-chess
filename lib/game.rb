@@ -14,10 +14,10 @@ class Game
   def prompt(player)
     @board.p
     curr = get_current_piece(player)
-    target = get_destination
+    target = get_destination  
     
     curr_piece = @board[curr.x, curr.y]
-    if Rules.knight(curr_piece, curr, target)
+    if Rules.no_jump(@board, curr, target) && @board.is_available?(target)
       move(curr, target)
     else 
       raise 'you broke rules'
