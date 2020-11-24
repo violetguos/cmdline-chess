@@ -34,26 +34,31 @@ module Rules
   end
 
   def Rules.no_jump(board, curr, target)
+    # x controls which row
     legit = false 
-    if target.x == curr.x
-      if target.y > curr.y
-        dest = curr.y
-        loop do
-          dest += 1         
-          legit = board[target.x, dest] == nil ? true : false
-        break if !legit || dest >= target.y 
+    puts curr.x, curr.y
+    puts target.x, target.y
+    if target.y == curr.y
+      if target.x > curr.x
+        dest = curr.x + 1
+        loop do      
+          legit = board[dest, target.y] == nil ? true : false
+          dest += 1
+        break if !legit || dest >= target.x 
         end
       end
 
-      if target.y < curr.y
-        dest = curr.y
+      if target.x < curr.x
+        dest = curr.x - 1
         loop do
+          legit = board[dest, target.y] == nil ? true : false
           dest -= 1
-          legit = board[target.x, dest] == nil ? true : false
-        break if !legit || dest <= target.y
+        break if !legit || dest <= target.x
         end
       end
     end
+
+    
     legit
   end
 
