@@ -11,10 +11,10 @@ def init(board)
   rook = Rook.new('rook', "\u2656", Player::W)
   board[row_other_white, 7] = rook
 
-  knight = Piece.new('knight', "\u2658", Player::W)
+  knight = Knight.new('knight', "\u2658", Player::W)
   board[row_other_white, 1] = knight
 
-  knight = Piece.new('knight', "\u2658", Player::W)
+  knight = Knight.new('knight', "\u2658", Player::W)
   board[row_other_white, 6] = knight
 
   bishop = Piece.new('bishop', "\u2657", Player::W)
@@ -43,10 +43,10 @@ def init(board)
   rook = Rook.new('rook', "\u265C", Player::B)
   board[row_other_black, 7] = rook
 
-  knight = Piece.new('knight', "\u265E", Player::B)
+  knight = Knight.new('knight', "\u265E", Player::B)
   board[row_other_black, 1] = knight
 
-  knight = Piece.new('knight', "\u265E", Player::B)
+  knight = Knight.new('knight', "\u265E", Player::B)
   board[row_other_black, 6] = knight
 
   bishop = Piece.new('bishop', "\u265D", Player::B)

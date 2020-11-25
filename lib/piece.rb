@@ -76,3 +76,39 @@ class Pawn < Piece
   end
 
 end 
+
+
+class Knight < Piece
+  def initialize(name, unicode, player, moved=false)
+    super
+    @directions = [Coord2D.new(2, 1), Coord2D.new(2, -1), Coord2D.new(-2, 1), Coord2D.new(-2, -1),
+      Coord2D.new(1, 2), Coord2D.new(1, -2), Coord2D.new(-1, -2), Coord2D.new(-1, 2)
+    ]
+  end
+
+  def target_is_valid?(board, curr, target)
+    legit = false
+    all_moves = possible_moves(board, curr)
+    all_moves.each do |m|
+      legit = true if m == target
+    end
+    legit
+  end
+
+  def possible_moves(board, curr)
+    legit_moves = []
+    @directions.each do |direction|
+      new_coord = curr + direction
+      if new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1)
+        if board[new_coord.x, new_coord.y] == nil
+          legit_moves << new_coord
+        else 
+          blocked = true
+        end
+      end
+    end
+    res = legit_moves.uniq { |f| [ f.x, f.y ] }
+    res
+  end
+  
+end
