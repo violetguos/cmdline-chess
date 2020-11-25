@@ -136,3 +136,31 @@ class Bishop < Piece
     res
   end
 end
+
+class Queen < Piece
+  def initialize(name, unicode, player, moved=false)
+    super
+    @directions = [Coord2D.new(1, 1), Coord2D.new(1, -1), Coord2D.new(-1, 1),
+      Coord2D.new(-1, -1), Coord2D.new(1, 0), Coord2D.new(-1, 0),
+      Coord2D.new(0, -1),  Coord2D.new(0, 1)]
+  end
+
+  def possible_moves(board, curr)
+    legit_moves = []
+    @directions.each do |direction|
+      blocked = false
+      new_coord = curr + direction
+      while new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1) && !blocked
+        if board[new_coord.x, new_coord.y] == nil
+          legit_moves << new_coord
+        else 
+          blocked = true
+        end
+        new_coord = new_coord + direction
+      end
+    end
+    res = legit_moves.uniq { |f| [ f.x, f.y ] }
+    res
+  end
+  
+end

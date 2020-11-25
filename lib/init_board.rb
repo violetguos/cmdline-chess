@@ -17,13 +17,13 @@ def init(board)
   knight = Knight.new('knight', "\u2658", Player::W)
   board[row_other_white, 6] = knight
 
-  bishop = Piece.new('bishop', "\u2657", Player::W)
+  bishop = Bishop.new('bishop', "\u2657", Player::W)
   board[row_other_white, 2] = bishop
 
-  bishop = Piece.new('bishop', "\u2657", Player::W)
+  bishop = Bishop.new('bishop', "\u2657", Player::W)
   board[row_other_white, 5] = bishop
 
-  queen = Piece.new('queen', "\u2655", Player::W)
+  queen = Queen.new('queen', "\u2655", Player::W)
   board[row_other_white, 3] = queen
 
   king = Piece.new('king', "\u2654", Player::W)
@@ -49,13 +49,13 @@ def init(board)
   knight = Knight.new('knight', "\u265E", Player::B)
   board[row_other_black, 6] = knight
 
-  bishop = Piece.new('bishop', "\u265D", Player::B)
+  bishop = Bishop.new('bishop', "\u265D", Player::B)
   board[row_other_black, 2] = bishop
 
-  bishop = Piece.new('bishop', "\u265D", Player::B)
+  bishop = Bishop.new('bishop', "\u265D", Player::B)
   board[row_other_black, 5] = bishop
 
-  queen = Piece.new('queen', "\u265B", Player::B)
+  queen = Queen.new('queen', "\u265B", Player::B)
   board[row_other_black, 3] = queen
 
   king = Piece.new('king', "\u265A", Player::B)
