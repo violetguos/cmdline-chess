@@ -17,7 +17,7 @@ class Game
     target = get_destination  
     
     curr_piece = @board[curr.x, curr.y]
-    if Rules.no_jump(@board, curr, target) && @board.is_available?(target)
+    if Rules.rook(@board, curr, target) && @board.is_available?(target)
       move(curr, target)
     else 
       raise 'you broke rules'

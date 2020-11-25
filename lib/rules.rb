@@ -13,7 +13,7 @@ module Rules
     false
   end
 
-  def Rules.knight(knight, curr, target)
+  def Rules.knight(curr, target)
     # verify the L shape
     legit = false
     moves = [Coord2D.new(2, 1), Coord2D.new(2, -1), Coord2D.new(-2, 1), Coord2D.new(-2, -1),
@@ -25,69 +25,30 @@ module Rules
     legit
   end
 
-  def Rules.rook(rook, curr, target)
+  def Rules.rook(board, curr, target)
     legit = false
-    if target.x == curr.x || target.y == target.y
-      legit = true
-    end
-    legit   
+    legit_moves = Rules.no_jump(board, curr, target)
+    legit_moves.each do |move|
+      legit = true if move == target
+    end  
+    legit
   end
 
   def Rules.no_jump(board, curr, target)
     # x controls which row
-    legit = false 
+    legit_moves = [] 
+    directions = [[1, 0], [-1,0], [-1, 0], [0, -1]]
+    directions.each do |direction|
+      new_file = curr.x + direction[0]
+      new_rank = curr.y + direction[1]
+      while curr.x.between?(0, 8) && curr.y.between?(0, 8) && board[curr.x, curr.y] == nil
+        legit << Coord2D.new(new_file, new_file)
 
-    # check column
-    if target.y == curr.y
-      if target.x > curr.x
-        dest = curr.x + 1
-        loop do      
-          legit = board[dest, target.y] == nil ? true : false
-          puts "legit #{legit}"
-          dest += 1
-        break if !legit || dest >= target.x 
-        end
       end
-
-      
-      if target.x < curr.x
-        dest = curr.x - 1
-        loop do
-          legit = board[dest, target.y] == nil ? true : false
-          dest -= 1
-        break if !legit || dest <= target.x
-        end
-      end
-
-    
-    elsif target.x == curr.x
-      #check row
-
-      if target.y > curr.y
-        dest = curr.y + 1
-        loop do      
-          legit = board[target.x, dest] == nil ? true : false
-          dest += 1
-        break if !legit || dest >= target.y
-        end
-      end
-
-
-      if target.y < curr.y
-        dest = curr.y - 1
-        loop do
-          legit = board[target.x, dest] == nil ? true : false
-          dest -= 1
-        break if !legit || dest <= target.y
-        end
-      end
-
     end
 
-    legit
+    
+    legit_moves
   end
-
-  
-
 
 end
