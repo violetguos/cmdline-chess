@@ -28,25 +28,24 @@ class Rook < Piece
 
   def target_is_valid?(board, curr, target)
     valid = false
-    valid_moves = no_jump(board, curr)
+    valid_moves = possible_moves(board, curr)
     valid_moves.each do |move|
       valid = true if move == target
     end  
     valid
   end
 
-  def no_jump(board, curr)
+  def possible_moves(board, curr)
     legit_moves = []
-    occupied = false
     @directions.each do |direction|
-      occupied = false
+      blocked = false
       new_coord = curr + direction
       
-      while new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1) && !occupied
+      while new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1) && !blocked
         if board[new_coord.x, new_coord.y] == nil
           legit_moves << new_coord
         else 
-          occupied = true
+          blocked = true
         end
         new_coord = new_coord + direction
       end
@@ -102,8 +101,6 @@ class Knight < Piece
       if new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1)
         if board[new_coord.x, new_coord.y] == nil
           legit_moves << new_coord
-        else 
-          blocked = true
         end
       end
     end
@@ -111,4 +108,31 @@ class Knight < Piece
     res
   end
   
+end
+
+class Bishop < Piece
+  def initialize(name, unicode, player, moved=false)
+    super
+    @directions = [Coord2D.new(1, 1), Coord2D.new(1, -1), Coord2D.new(-1, 1),
+      Coord2D.new(-1, -1)
+    ]
+  end
+
+  def possible_moves(board, curr)
+    legit_moves = []
+    @directions.each do |direction|
+      blocked = false
+      new_coord = curr + direction
+      while new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1) && !blocked
+        if board[new_coord.x, new_coord.y] == nil
+          legit_moves << new_coord
+        else 
+          blocked = true
+        end
+        new_coord = new_coord + direction
+      end
+    end
+    res = legit_moves.uniq { |f| [ f.x, f.y ] }
+    res
+  end
 end

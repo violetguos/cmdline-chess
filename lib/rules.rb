@@ -45,6 +45,7 @@ module Rules
         legit << Coord2D.new(new_file, new_file)
 
       end
+      
     end
 
     

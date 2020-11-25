@@ -46,8 +46,7 @@ describe Rook do
       board[0, 0] = rook
       board[0, 4] = pawn
       board[4, 0] = rook_1
-      valid = rook.no_jump(board, Coord2D.new(0, 0))
-      puts valid
+      valid = rook.possible_moves(board, Coord2D.new(0, 0))
       expect(valid).not_to include(Coord2D.new(0,4), Coord2D.new(4,0))    
       expect(valid).to include(Coord2D.new(0,3), Coord2D.new(3,0))    
 
