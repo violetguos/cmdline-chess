@@ -27,5 +27,12 @@ describe Arr2D do
     res = loc + dest
     expect(res).to eql(Coord2D.new(3, 2))
   end
+
+  it "overloads comparision" do 
+    loc = Coord2D.new(2, 1)
+    dest = Coord2D.new(2, 1)
+    eval = (loc == dest)
+    expect(eval).to eql(true)
+  end
 end
   
