@@ -9,4 +9,5 @@ class Piece
     @moved = moved
     @forward = player == W ? -1 : 1
   end
+ 
 end

@@ -36,18 +36,20 @@ module Rules
   def Rules.no_jump(board, curr, target)
     # x controls which row
     legit = false 
-    puts curr.x, curr.y
-    puts target.x, target.y
+
+    # check column
     if target.y == curr.y
       if target.x > curr.x
         dest = curr.x + 1
         loop do      
           legit = board[dest, target.y] == nil ? true : false
+          puts "legit #{legit}"
           dest += 1
         break if !legit || dest >= target.x 
         end
       end
 
+      
       if target.x < curr.x
         dest = curr.x - 1
         loop do
@@ -56,11 +58,36 @@ module Rules
         break if !legit || dest <= target.x
         end
       end
-    end
 
     
+    elsif target.x == curr.x
+      #check row
+
+      if target.y > curr.y
+        dest = curr.y + 1
+        loop do      
+          legit = board[target.x, dest] == nil ? true : false
+          dest += 1
+        break if !legit || dest >= target.y
+        end
+      end
+
+
+      if target.y < curr.y
+        dest = curr.y - 1
+        loop do
+          legit = board[target.x, dest] == nil ? true : false
+          dest -= 1
+        break if !legit || dest <= target.y
+        end
+      end
+
+    end
+
     legit
   end
+
+  
 
 
 end
