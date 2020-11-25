@@ -26,14 +26,13 @@ def init(board)
   queen = Queen.new('queen', "\u2655", Player::W)
   board[row_other_white, 3] = queen
 
-  king = Piece.new('king', "\u2654", Player::W)
+  king = King.new('king', "\u2654", Player::W)
   board[row_other_white, 4] = king
 
-  for i in 0...8 do
+  (0...8).each do |i|
     pawn = Pawn.new('pawn', "\u2659", Player::W)
     board[row_pawn_white, i] = pawn
   end
-
 
   row_other_black = 0
   row_pawn_black = 1
@@ -58,12 +57,11 @@ def init(board)
   queen = Queen.new('queen', "\u265B", Player::B)
   board[row_other_black, 3] = queen
 
-  king = Piece.new('king', "\u265A", Player::B)
+  king = King.new('king', "\u265A", Player::B)
   board[row_other_black, 4] = king
 
-  for i in 0...8 do
+  (0...8).each do |i|
     pawn = Pawn.new('pawn', "\u265F", Player::B)
     board[row_pawn_black, i] = pawn
   end
-
-end 
+end

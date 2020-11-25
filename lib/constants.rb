@@ -4,4 +4,3 @@ BISHOP = 'bishop'.freeze
 QUEEN = 'queen'.freeze
 KNIGHT = 'knight'.freeze
 PAWN = 'pawn'.freeze
-

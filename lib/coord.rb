@@ -1,12 +1,11 @@
 Coord2D = Struct.new(:x, :y) do
   def +(obj)
-    Coord2D.new(self.x + obj.x ,  self.y + obj.y) 
+    Coord2D.new(x + obj.x, y + obj.y)
   end
 
   def ==(obj)
-    self.x == obj.x && self.y == obj.y ? true : false
+    x == obj.x && y == obj.y ? true : false
   end
-  
 end
 
 class Arr2D
@@ -28,7 +27,7 @@ class Arr2D
   end
 
   def is_available?(coord)
-    @array_2d[coord.x][coord.y] == nil ? true : false
+    @array_2d[coord.x][coord.y].nil? ? true : false
   end
 
   def [](x, y)
@@ -88,7 +87,7 @@ class Arr2D
         print '|'
       end
       # chess board convention
-      print "#{8-i}\n"
+      print "#{8 - i}\n"
     end
 
     (0...@dim).each do |i|

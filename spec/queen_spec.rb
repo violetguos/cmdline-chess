@@ -1,4 +1,3 @@
-require './lib/rules.rb'
 require './lib/game.rb'
 require './lib/piece.rb'
 

@@ -1,6 +1,5 @@
 require_relative 'coord.rb'
 require_relative 'constants.rb'
-require_relative 'rules'
 require_relative 'player.rb'
 
 class Game
@@ -9,18 +8,17 @@ class Game
     @board = Arr2D.new(8)
     require_relative 'init_board'
     init(@board)
-
   end
 
   def prompt(player)
     @board.p
     curr = get_current_piece(player)
-    target = get_destination  
-    
+    target = get_destination
+
     curr_piece = @board[curr.x, curr.y]
     if curr_piece.target_is_valid?(@board, curr, target) && @board.is_available?(target)
       move(curr, target)
-    else 
+    else
       raise 'you broke rules'
     end
   end
@@ -29,19 +27,19 @@ class Game
     puts "Current player #{player}"
     puts 'Enter current colmnn: '
     # converts board notation to array position
-    col_curr = gets.strip.ord - 'a'.ord 
+    col_curr = gets.strip.ord - 'a'.ord
 
     puts 'Enter current row: '
-    row_curr = 8 - gets.strip.to_i 
+    row_curr = 8 - gets.strip.to_i
     curr = Coord2D.new(row_curr, col_curr)
     curr
-  end 
+  end
 
   def get_destination
     puts 'Enter target column: '
     col = gets.strip.ord - 'a'.ord
     puts 'Enter target row: '
-    row = 8 - gets.strip.to_i 
+    row = 8 - gets.strip.to_i
     target = Coord2D.new(row, col)
     target
   end
@@ -72,10 +70,9 @@ class Game
   def turns
     i = 0
     while i < 3
-      i%2==0 ? player = Player::W : player = Player::B
+      player = i.even? ? Player::W : Player::B
       prompt(player)
       i += 1
     end
   end
 end
-
