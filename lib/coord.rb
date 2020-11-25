@@ -2,10 +2,11 @@ Coord2D = Struct.new(:x, :y) do
   def +(obj)
     Coord2D.new(self.x + obj.x ,  self.y + obj.y) 
   end
-  
+
   def ==(obj)
     self.x == obj.x && self.y == obj.y ? true : false
   end
+  
 end
 
 class Arr2D

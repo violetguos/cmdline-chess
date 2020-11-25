@@ -1,6 +1,7 @@
 require_relative 'coord.rb'
 require_relative 'constants.rb'
 require_relative 'rules'
+require_relative 'player.rb'
 
 class Game
   attr_accessor :board
@@ -17,7 +18,7 @@ class Game
     target = get_destination  
     
     curr_piece = @board[curr.x, curr.y]
-    if Rules.rook(@board, curr, target) && @board.is_available?(target)
+    if curr_piece.target_is_valid?(@board, curr, target) && @board.is_available?(target)
       move(curr, target)
     else 
       raise 'you broke rules'
@@ -71,7 +72,7 @@ class Game
   def turns
     i = 0
     while i < 3
-      i%2==0 ? player = W : player = B
+      i%2==0 ? player = Player::W : player = Player::B
       prompt(player)
       i += 1
     end
