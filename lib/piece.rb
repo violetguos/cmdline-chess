@@ -29,7 +29,6 @@ class Rook < Piece
   def target_is_valid?(board, curr, target)
     valid = false
     valid_moves = no_jump(board, curr)
-    puts valid_moves
     valid_moves.each do |move|
       valid = true if move == target
     end  
@@ -40,6 +39,7 @@ class Rook < Piece
     legit_moves = []
     occupied = false
     @directions.each do |direction|
+      occupied = false
       new_coord = curr + direction
       
       while new_coord.x.between?(0, board.dim-1) && new_coord.y.between?(0, board.dim-1) && !occupied
