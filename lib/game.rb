@@ -24,23 +24,32 @@ class Game
   end
 
   def get_current_piece(player)
-    puts "Current player #{player}"
-    puts 'Enter current colmnn: '
-    # converts board notation to array position
-    col_curr = gets.strip.ord - 'a'.ord
+    curr = nil
+    loop do
+      puts "Current player #{player}"
+      puts 'Enter current colmnn: '
+      # converts board notation to array position
+      col_curr = gets.strip.ord - 'a'.ord
 
-    puts 'Enter current row: '
-    row_curr = 8 - gets.strip.to_i
-    curr = Coord2D.new(row_curr, col_curr)
+      puts 'Enter current row: '
+      row_curr = 8 - gets.strip.to_i
+      curr = Coord2D.new(row_curr, col_curr)
+      puts @board[curr.x, curr.y]
+      break if @board[curr.x, curr.y] != nil && @board[curr.x, curr.y].player == player
+    end
     curr
   end
 
   def get_destination
-    puts 'Enter target column: '
-    col = gets.strip.ord - 'a'.ord
-    puts 'Enter target row: '
-    row = 8 - gets.strip.to_i
-    target = Coord2D.new(row, col)
+    target = nil
+    loop do 
+      puts 'Enter target column: '
+      col = gets.strip.ord - 'a'.ord
+      puts 'Enter target row: '
+      row = 8 - gets.strip.to_i
+      target = Coord2D.new(row, col)
+      break if @board[target.x, target.y] == nil
+    end
     target
   end
 
