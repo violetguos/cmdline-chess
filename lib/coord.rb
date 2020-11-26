@@ -33,7 +33,9 @@ class Arr2D
   def [](x, y)
     # coordinate look up with []
     # return @board[coord.x][coord.y]
+
     raise 'Coord out of boundary' unless x >= 0 && x < @dim && y >= 0 && y < @dim
+
     @array_2d[x][y]
   end
 

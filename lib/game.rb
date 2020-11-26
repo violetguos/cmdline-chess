@@ -34,10 +34,23 @@ class Game
       puts 'Enter current row: '
       row_curr = 8 - gets.strip.to_i
       curr = Coord2D.new(row_curr, col_curr)
-      puts @board[curr.x, curr.y]
-      break if @board[curr.x, curr.y] != nil && @board[curr.x, curr.y].player == player
+      break if piece_valid?(curr, player)
     end
     curr
+  end
+
+  def piece_valid?(curr, player)
+    # && @board[curr.x, curr.y].player == player
+    begin
+      piece = @board[curr.x, curr.y]
+      unless piece.is_colour?(player)
+        puts "This is not your piece. Please try again."
+      end
+    rescue => exception
+      puts "#{exception}. Please try again"
+      return false
+    end
+    true
   end
 
   def get_destination

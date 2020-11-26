@@ -14,6 +14,10 @@ class Piece
     @player = player
     @moved = moved
   end
+
+  def is_colour?(colour)
+    @player == colour ? true : false
+  end
 end
 
 class Rook < Piece

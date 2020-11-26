@@ -8,6 +8,12 @@ describe Arr2D do
     expect(b[loc.x, loc.y]).to eql("test")    
   end
 
+  it "returns an error when coordinates are out of boundary" do
+    b = Arr2D.new(4)
+    loc = Coord2D.new(5, 6)
+    expect{b[loc.x, loc.y]}.to raise_error(RuntimeError, 'Coord out of boundary')
+  end
+
   it "looks up the diags and return 2 arrays of Struct Coord2D" do
     b = Arr2D.new(3)
     b[0, 0] = 0
