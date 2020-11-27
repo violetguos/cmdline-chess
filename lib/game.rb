@@ -61,9 +61,20 @@ class Game
       puts 'Enter target row: '
       row = 8 - gets.strip.to_i
       target = Coord2D.new(row, col)
-      break if @board[target.x, target.y] == nil
+      break if destination_valid?(target)
     end
     target
+  end
+
+  def destination_valid?(dest)
+    begin
+      val = @board[dest.x, dest.y]
+    rescue => exception
+      puts "#{exception}. Please try again"
+      return false
+    end
+    true
+
   end
 
   def move(curr, target)
