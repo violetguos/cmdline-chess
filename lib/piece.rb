@@ -76,13 +76,13 @@ class Pawn < Piece
   def target_is_valid?(_board, curr, target)
     if !@moved && target.x - curr.x == @forward * 2 && curr.y == target.y
       return true
-    elsif @moved && target.x - curr.x == @forward * 1 && curr.y == target.y
+    elsif target.x - curr.x == @forward * 1 && curr.y == target.y
       return true
-    elsif @moved && target.x - curr.x == @forward * 1 && curr.y == target.y
+    elsif target.x - curr.x == @forward * 1 && curr.y == target.y
       return true
     end
 
-    if _board[target.x, target.y] != nil 
+    if _board[target.x, target.y] != nil && !_board[target.x, target.y].is_colour?(@player)
       if target.x - curr.x == @forward * 1 && target.y - curr.y == @forward * 1 
         return true
       else target.x - curr.x == @forward * -1 && target.y - curr.y == @forward * 1 
