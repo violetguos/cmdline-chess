@@ -15,9 +15,22 @@ class Piece
     @moved = moved
   end
 
+  def destroy
+    puts "Piece #{@name} of #{@player} destoryed"
+  end
+
   def is_colour?(colour)
     @player == colour ? true : false
   end
+
+  def target_is_valid?(board, curr, target)
+    valid = false
+    valid_moves = possible_moves(board, curr)
+    valid_moves.each do |move|
+      valid = true if move == target
+    end
+    valid
+  end 
 end
 
 class Rook < Piece
@@ -30,12 +43,8 @@ class Rook < Piece
   end
 
   def target_is_valid?(board, curr, target)
-    valid = false
-    valid_moves = possible_moves(board, curr)
-    valid_moves.each do |move|
-      valid = true if move == target
-    end
-    valid
+    super
+
   end
 
   def possible_moves(board, curr)
@@ -67,11 +76,19 @@ class Pawn < Piece
   def target_is_valid?(_board, curr, target)
     if !@moved && target.x - curr.x == @forward * 2 && curr.y == target.y
       return true
-    elsif !@moved && target.x - curr.x == @forward * 1 && curr.y == target.y
+    elsif @moved && target.x - curr.x == @forward * 1 && curr.y == target.y
       return true
-    elsif !@moved && target.x - curr.x == @forward * 1 && curr.y == target.y
+    elsif @moved && target.x - curr.x == @forward * 1 && curr.y == target.y
       return true
     end
+
+    if _board[target.x, target.y] != nil 
+      if target.x - curr.x == @forward * 1 && target.y - curr.y == @forward * 1 
+        return true
+      else target.x - curr.x == @forward * -1 && target.y - curr.y == @forward * 1 
+        return true
+      end
+    end 
 
     false
   end

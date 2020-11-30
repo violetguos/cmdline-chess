@@ -11,16 +11,20 @@ class Game
   end
 
   def prompt(player)
-    @board.p
-    curr = get_current_piece(player)
-    target = get_destination
+    loop do
+      @board.p
+      curr = get_current_piece(player)
+      target = get_destination
 
-    curr_piece = @board[curr.x, curr.y]
-    if curr_piece.target_is_valid?(@board, curr, target) && @board.is_available?(target)
-      move(curr, target)
-    else
-      raise 'you broke rules'
+      curr_piece = @board[curr.x, curr.y]
+      if curr_piece.target_is_valid?(@board, curr, target)
+        move(curr, target)
+        break
+      else
+        puts 'reenter the target'
+      end
     end
+
   end
 
   def get_current_piece(player)
@@ -80,6 +84,11 @@ class Game
   def move(curr, target)
     # process the positions
     curr_piece = @board[curr.x, curr.y]
+    target_piece = @board[target.x, target.y]
+    if target_piece != nil
+      target_piece.destroy
+      target_piece = nil
+    end
     @board[target.x, target.y] = curr_piece
     @board[curr.x, curr.y] = nil
     curr_piece.moved = true
@@ -102,7 +111,7 @@ class Game
 
   def turns
     i = 0
-    while i < 3
+    while i < 40
       player = i.even? ? Player::W : Player::B
       prompt(player)
       i += 1
