@@ -1,6 +1,8 @@
 require_relative 'coord.rb'
 require_relative 'constants.rb'
 require_relative 'player.rb'
+require_relative 'pgn_parser.rb'
+
 
 class Game
   attr_accessor :board
@@ -25,6 +27,25 @@ class Game
       end
     end
 
+  end
+
+  def auto_prompt(player)
+    
+    hash = load_openings
+    arr = hash[0]
+    print arr
+
+      arr.each_slice(2) do |move_1, move_2|
+        str_1 = regex_coord(move_1)
+        str_2 = regex_coord(move_2)
+        puts str_1
+        puts str_2
+        @board.p
+        curr = Coord2D.new(8-str_1[1].to_i, str_1[0].strip.ord - 'a'.ord)
+        target = Coord2D.new(8-str_2[1].to_i, str_2[0].strip.ord-'a'.ord)
+        move(curr, target)
+      end
+    
   end
 
   def get_current_piece(player)
@@ -83,8 +104,12 @@ class Game
 
   def move(curr, target)
     # process the positions
+    puts curr
+    puts target
     curr_piece = @board[curr.x, curr.y]
+    puts curr_piece
     target_piece = @board[target.x, target.y]
+    puts target_piece
     if target_piece != nil
       target_piece.destroy
       target_piece = nil
@@ -113,7 +138,7 @@ class Game
     i = 0
     while i < 40
       player = i.even? ? Player::W : Player::B
-      prompt(player)
+      auto_prompt(player)
       i += 1
     end
   end
