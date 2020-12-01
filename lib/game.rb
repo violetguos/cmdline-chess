@@ -1,7 +1,7 @@
 require_relative 'coord.rb'
 require_relative 'constants.rb'
 require_relative 'player.rb'
-require_relative 'pgn_parser.rb'
+require_relative 'game_parser.rb'
 
 
 class Game
@@ -31,20 +31,18 @@ class Game
 
   def auto_prompt(player)
     
-    hash = load_openings
-    arr = hash[0]
-    print arr
+    moves = load_game
+    
 
-      arr.each_slice(2) do |move_1, move_2|
-        str_1 = regex_coord(move_1)
-        str_2 = regex_coord(move_2)
-        puts str_1
-        puts str_2
-        @board.p
-        curr = Coord2D.new(8-str_1[1].to_i, str_1[0].strip.ord - 'a'.ord)
-        target = Coord2D.new(8-str_2[1].to_i, str_2[0].strip.ord-'a'.ord)
-        move(curr, target)
-      end
+    moves.each do |move|
+      
+      @board.p
+      puts move
+      # move is a string combo of the PGN notation
+      curr = Coord2D.new(8-move[0][1].to_i, move[0][0].strip.ord - 'a'.ord)
+      target = Coord2D.new(8-move[1][1].to_i, move[1][0].strip.ord-'a'.ord)
+      move(curr, target)
+    end
     
   end
 
