@@ -1,6 +1,6 @@
 require 'nokogiri'
-def load_game
-  doc = File.open("data/game_db/example.game") { |f| Nokogiri::XML(f) }
+def load_game(file)
+  doc = File.open(File.join("data/game_db", file)) { |f| Nokogiri::XML(f) }
   moves = doc.search('key:contains("Moves")').map{ |node|
     node.next_element.text
     

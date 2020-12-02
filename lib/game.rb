@@ -29,9 +29,9 @@ class Game
 
   end
 
-  def auto_prompt
+  def auto_prompt(file)
     
-    moves = load_game
+    moves = load_game(file)
     moves.each_with_index do |coord, i|
       player = i.even? ? Player::W : Player::B
       @board.p
