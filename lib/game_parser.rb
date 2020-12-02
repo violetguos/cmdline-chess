@@ -1,4 +1,5 @@
 require 'nokogiri'
+
 def load_game(file)
   doc = File.open(File.join("data/game_db", file)) { |f| Nokogiri::XML(f) }
   moves = doc.search('key:contains("Moves")').map{ |node|

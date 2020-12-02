@@ -138,7 +138,7 @@ class Game
     puts 'Would you like to save game? [y/n]'
     ans = gets.chomp
     if ans.downcase == 'y'
-      File.open('game', 'w+') do |f|
+      File.open(File.join('data','game'), 'w+') do |f|
         f.write(Marshal.dump(self))
       end
     end
@@ -153,6 +153,7 @@ class Game
     i = 0
     while i < 40
       player = i.even? ? Player::W : Player::B
+      save
       prompt(player)
       i += 1
     end
