@@ -1,6 +1,5 @@
 require_relative 'piece.rb'
 require_relative 'constants.rb'
-require_relative 'player.rb'
 
 def init(board)
   row_pawn_white = 6

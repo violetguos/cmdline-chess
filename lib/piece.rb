@@ -194,5 +194,29 @@ class King < Piece
     end
     res = legit_moves.uniq { |f| [f.x, f.y] }
     res
+  end 
+end
+
+class WhiteKing < King
+  def initialize(name, unicode, player, moved = false)
+    super
+    @castle_o_o = Coord2D.new(0, 2)
+  end 
+
+  def possible_moves(board, curr)
+    @directions << @castle_o_o unless moved 
+    res = super  
+  end
+end
+
+class BlackKing < King
+  def initialize(name, unicode, player, moved = false)
+    super
+    @castle_o_o = Coord2D.new(0, -2)
+  end 
+
+  def possible_moves(board, curr)
+    @directions << @castle_o_o unless moved 
+    res = super  
   end
 end
