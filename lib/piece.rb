@@ -207,6 +207,7 @@ class WhiteKing < King
     @directions << @castle_o_o unless moved 
     res = super  
   end
+
 end
 
 class BlackKing < King

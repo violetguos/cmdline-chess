@@ -25,7 +25,7 @@ def init(board)
   queen = Queen.new('queen', "\u2655", Player::W)
   board[row_other_white, 3] = queen
 
-  king = King.new('king', "\u2654", Player::W)
+  king = WhiteKing.new('king', "\u2654", Player::W)
   board[row_other_white, 4] = king
 
   (0...8).each do |i|
@@ -56,7 +56,7 @@ def init(board)
   queen = Queen.new('queen', "\u265B", Player::B)
   board[row_other_black, 3] = queen
 
-  king = King.new('king', "\u265A", Player::B)
+  king = BlackKing.new('king', "\u265A", Player::B)
   board[row_other_black, 4] = king
 
   (0...8).each do |i|

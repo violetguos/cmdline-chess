@@ -29,18 +29,16 @@ class Game
 
   end
 
-  def auto_prompt(player)
+  def auto_prompt
     
     moves = load_game
-    
-
-    moves.each do |move|
-      
+    moves.each_with_index do |coord, i|
+      player = i.even? ? Player::W : Player::B
       @board.p
-      puts move
+      puts coord
       # move is a string combo of the PGN notation
-      curr = Coord2D.new(8-move[0][1].to_i, move[0][0].strip.ord - 'a'.ord)
-      target = Coord2D.new(8-move[1][1].to_i, move[1][0].strip.ord-'a'.ord)
+      curr   = Coord2D.new(8-coord[0][1].to_i, coord[0][0].strip.ord - 'a'.ord)
+      target = Coord2D.new(8-coord[1][1].to_i, coord[1][0].strip.ord-'a'.ord)
       move(curr, target)
     end
     
@@ -63,7 +61,6 @@ class Game
   end
 
   def piece_valid?(curr, player)
-    # && @board[curr.x, curr.y].player == player
     begin
       piece = @board[curr.x, curr.y]
       unless piece.is_colour?(player)
@@ -107,6 +104,10 @@ class Game
     curr_piece = @board[curr.x, curr.y]
     puts curr_piece
     target_piece = @board[target.x, target.y]
+    if king_castle?(curr_piece, curr, target)
+      # move the rook
+      castle_move_rook(Coord2D.new(curr.x, 7), Coord2D.new(curr.x, 5))
+    end
     puts target_piece
     if target_piece != nil
       target_piece.destroy
@@ -115,6 +116,22 @@ class Game
     @board[target.x, target.y] = curr_piece
     @board[curr.x, curr.y] = nil
     curr_piece.moved = true
+  end
+
+  def king_castle?(curr_piece, curr, target)
+    if curr_piece.name == KING && !curr_piece.moved 
+      if target - curr == Coord2D.new(0, 2)
+        return true
+      end 
+    end 
+    false 
+  end
+
+  def castle_move_rook(curr, target)
+    rook = @board[curr.x, curr.y]
+    @board[target.x, target.y] = rook 
+    rook.moved = true
+    @board[curr.x, curr.y] = nil
   end
 
   def save
@@ -136,7 +153,7 @@ class Game
     i = 0
     while i < 40
       player = i.even? ? Player::W : Player::B
-      auto_prompt(player)
+      prompt(player)
       i += 1
     end
   end

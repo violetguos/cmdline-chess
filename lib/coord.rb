@@ -3,6 +3,10 @@ Coord2D = Struct.new(:x, :y) do
     Coord2D.new(x + obj.x, y + obj.y)
   end
 
+  def -(obj)
+    Coord2D.new(x - obj.x, y - obj.y)
+  end
+
   def ==(obj)
     x == obj.x && y == obj.y ? true : false
   end
