@@ -13,6 +13,7 @@ when 2
   game_file = Prompter.read_game_db
   g.auto_prompt(game_file)
 when 3
-  g = Game.load
+  g = Game.new 
+  g.load
   g.turns
 end

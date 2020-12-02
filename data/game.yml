@@ -1,0 +1,521 @@
+--- !ruby/object:Arr2D
+dim: 8
+array_2d:
+- - !ruby/object:Rook
+    name: rook
+    unicode: "♜"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+  - !ruby/object:Knight
+    name: knight
+    unicode: "♞"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 2
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 2
+  - !ruby/object:Bishop
+    name: bishop
+    unicode: "♝"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+  - !ruby/object:Queen
+    name: queen
+    unicode: "♛"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+  - !ruby/object:BlackKing
+    name: king
+    unicode: "♚"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+    castle_o_o: !ruby/struct:Coord2D
+      x: 0
+      y: -2
+  - !ruby/object:Bishop
+    name: bishop
+    unicode: "♝"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+  - !ruby/object:Knight
+    name: knight
+    unicode: "♞"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 2
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 2
+  - !ruby/object:Rook
+    name: rook
+    unicode: "♜"
+    player: Black
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+- - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♟"
+    player: Black
+    moved: false
+    forward: 1
+- -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+- -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+- - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: true
+    forward: -1
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+- -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+- -
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+  - !ruby/object:Pawn
+    name: pawn
+    unicode: "♙"
+    player: White
+    moved: false
+    forward: -1
+- - !ruby/object:Rook
+    name: rook
+    unicode: "♖"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+  - !ruby/object:Knight
+    name: knight
+    unicode: "♘"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 2
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 2
+  - !ruby/object:Bishop
+    name: bishop
+    unicode: "♗"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+  - !ruby/object:Queen
+    name: queen
+    unicode: "♕"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+  - !ruby/object:WhiteKing
+    name: king
+    unicode: "♔"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1
+    castle_o_o: !ruby/struct:Coord2D
+      x: 0
+      y: 2
+  - !ruby/object:Bishop
+    name: bishop
+    unicode: "♗"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -1
+  - !ruby/object:Knight
+    name: knight
+    unicode: "♘"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: 2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: 1
+    - !ruby/struct:Coord2D
+      x: -2
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 2
+    - !ruby/struct:Coord2D
+      x: 1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: -2
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 2
+  - !ruby/object:Rook
+    name: rook
+    unicode: "♖"
+    player: White
+    moved: false
+    directions:
+    - !ruby/struct:Coord2D
+      x: 1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: -1
+      y: 0
+    - !ruby/struct:Coord2D
+      x: 0
+      y: -1
+    - !ruby/struct:Coord2D
+      x: 0
+      y: 1

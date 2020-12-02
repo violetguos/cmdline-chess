@@ -2,7 +2,8 @@ require_relative 'coord.rb'
 require_relative 'constants.rb'
 require_relative 'player.rb'
 require_relative 'game_parser.rb'
-
+require_relative 'load.rb'
+require 'yaml'
 
 class Game
   attr_accessor :board
@@ -138,15 +139,17 @@ class Game
     puts 'Would you like to save game? [y/n]'
     ans = gets.chomp
     if ans.downcase == 'y'
-      File.open(File.join('data','game'), 'w+') do |f|
-        f.write(Marshal.dump(self))
-      end
+      File.open("data/game.yml", "w") { |file| file.write(@board.to_yaml) }
+
     end
     true
   end
 
-  def self.load
-    Marshal.load(File.binread('game'))
+  def load
+    filename = "data/game.yml"
+    saved = File.open(File.join(Dir.pwd, filename), 'r')
+    @board = YAML.load(saved)
+    
   end
 
   def turns
