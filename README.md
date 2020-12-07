@@ -33,7 +33,7 @@ The board's access `[]` method is also overloaded. The `[]`(gettor) and `[]=`(se
   - Break up `lib/game.rb`
   - Break up `lib/piece.rb`
   - `lib/piece.rb` is kept as a large file because of circular import problems
-  - `game.rb` is a long file because all the functions need the `@board` parameter
+  - `lib/game.rb` is a long file because all the functions need the `@board` parameter
 
 ## Load a game from Apple's chess console
 
