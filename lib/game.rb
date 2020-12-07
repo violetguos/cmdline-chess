@@ -2,7 +2,8 @@ require_relative 'coord.rb'
 require_relative 'constants.rb'
 require_relative 'player.rb'
 require_relative 'game_parser.rb'
-require_relative 'load.rb'
+require_relative 'computer.rb'
+
 require 'yaml'
 
 class Game
@@ -115,6 +116,7 @@ class Game
       target_piece = nil
     end
     @board[target.x, target.y] = curr_piece
+    curr_piece.position = target
     @board[curr.x, curr.y] = nil
     curr_piece.moved = true
   end
@@ -152,13 +154,33 @@ class Game
     
   end
 
-  def turns
-    i = 0
-    while i < 40
-      player = i.even? ? Player::W : Player::B
-      save
-      prompt(player)
-      i += 1
+  def turns(mode)
+    case mode
+    when 1
+      i = 0
+      while i < 40
+        player = i.even? ? Player::W : Player::B
+        save
+        prompt(player)
+        i += 1
+      end
+    when 4
+      computer = Computer.new()
+      i = 0
+      while i < 40
+        player = i.even? ? Player::W : Player::B
+        save
+        if i.even?
+          prompt(player)
+        else
+          computer.update_pieces(@board)
+          piece, dest = computer.choose_random_piece(@board)
+          move(piece.position, dest)
+        end
+        i += 1
+      end
     end
   end
+
+  
 end

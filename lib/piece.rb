@@ -7,12 +7,13 @@ end
 
 class Piece
   attr_reader :name, :unicode, :player, :forward
-  attr_accessor :moved
-  def initialize(name, unicode, player, moved = false)
+  attr_accessor :moved, :position
+  def initialize(name, unicode, player, position, moved = false)
     @name = name
     @unicode = unicode
     @player = player
     @moved = moved
+    @position = position
   end
 
   def destroy
@@ -81,7 +82,7 @@ class Pawn < Piece
     elsif target.x - curr.x == @forward * 1 && curr.y == target.y
       return true
     end
-
+    # taking a piece, walk diagonally
     if _board[target.x, target.y] != nil && !_board[target.x, target.y].is_colour?(@player)
       if target.x - curr.x == @forward * 1 && target.y - curr.y == @forward * 1 
         return true
@@ -91,6 +92,22 @@ class Pawn < Piece
     end 
 
     false
+  end
+
+  def possible_moves(board, curr)
+    legit_moves = []
+
+    if !moved
+      pos = Coord2D.new(@forward * 2 + curr.x, curr.y)
+      if board[pos.x, pos.y] == nil
+        legit_moves.push(pos)
+      end
+    end
+    pos = Coord2D.new(@forward * 1 + curr.x, curr.y)
+    if board[pos.x, pos.y] == nil
+        legit_moves.push(pos)
+    end
+    legit_moves
   end
 end
 

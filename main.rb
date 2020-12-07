@@ -7,7 +7,7 @@ user_choice = Prompter.start
 case user_choice
 when 1
   g = Game.new
-  g.turns
+  g.turns(1)
 when 2
   g = Game.new
   game_file = Prompter.read_game_db
@@ -16,4 +16,7 @@ when 3
   g = Game.new 
   g.load
   g.turns
+when 4
+  g = Game.new
+  g.turns(4)
 end

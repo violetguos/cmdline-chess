@@ -51,6 +51,14 @@ class Arr2D
     @array_2d[x][y] = val
   end
 
+  def each
+    @array_2d.each  do |arr| 
+      arr.each do |value|
+        yield value
+      end
+    end
+  end
+
   def get_diag
     ## get diagonals
     diag_l_r = [] # \ dir

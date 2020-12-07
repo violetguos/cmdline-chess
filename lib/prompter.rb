@@ -3,10 +3,11 @@ module Prompter
     puts "Welcome! Please indicate
     1) Human vs human
     2) Load a game from DB
-    3) Continue your last game"
+    3) Continue your last game
+    4) Human vs Computer"
 
     user_choice = gets.strip.to_i
-    until [1, 2, 3].include?(user_choice)
+    until [1, 2, 3, 4].include?(user_choice)
       puts "Invalid option, try again"
       user_choice = gets.strip.to_i
 
