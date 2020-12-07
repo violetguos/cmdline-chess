@@ -5,6 +5,36 @@ A basic chess game on command line.
 1. Run `bundle install `
 2. Run `ruby main.rb`
 
+## For Developers
+
+### Board coordinate system
+
+I designed a 2D coordinate to facilitate accessing the 2D chess board. I overloaded operators so that we can calculate distances between two squares.
+
+### 2D array for board
+
+The board's access `[]` method is also overloaded. The `[]`(gettor) and `[]=`(settor) both check if the coordinate is within the limit of a chess board. I designed a hard `raise` error if it's out of boundry, but the methods in the game would use `rescue`. The user tries again instead of terminating the program.
+
+## Lessons learned
+
+- Testing ruby code
+- use rubocup
+- structuring larger projects
+- persistence (i basically deleted the whole project and restarted)
+- don't overengineer things, define your MVP first
+
+## What I like in this project
+
+- the coordinate and board system
+
+## What I'd done differently
+
+- find a way to use Ruby's namespace systems more elegantly
+  - Break up `lib/game.rb`
+  - Break up `lib/piece.rb`
+  - `lib/piece.rb` is kept as a large file because of circular import problems
+  - `game.rb` is a long file because all the functions need the `@board` parameter
+
 ## Load a game from Apple's chess console
 
 1. Click save
@@ -33,13 +63,3 @@ Apple's .game file is an XML, which I parse with a ruby library. The XML file re
 
 - all basic movements (en passant not supported)
 - king castle (without explicit commands), just input the coordinates
-
-## For Developers
-
-### Board coordinate system
-
-I designed a 2D coordinate to facilitate accessing the 2D chess board. I overloaded operators so that we can calculate distances between two squares.
-
-### 2D array for board
-
-The board's access `[]` method is also overloaded. The `[]`(gettor) and `[]=`(settor) both check if the coordinate is within the limit of a chess board. I designed a hard `raise` error if it's out of boundry, but the methods in the game would use `rescue`. The user tries again instead of terminating the program.
