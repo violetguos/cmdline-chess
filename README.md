@@ -63,3 +63,4 @@ Apple's .game file is an XML, which I parse with a ruby library. The XML file re
 
 - all basic movements (en passant not supported)
 - king castle (without explicit commands), just input the coordinates
+- simple AI player (choose available pieces and random moves)
