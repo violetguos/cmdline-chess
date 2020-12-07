@@ -1,14 +1,14 @@
 Coord2D = Struct.new(:x, :y) do
-  def +(obj)
-    Coord2D.new(x + obj.x, y + obj.y)
+  def +(other)
+    Coord2D.new(x + other.x, y + other.y)
   end
 
-  def -(obj)
-    Coord2D.new(x - obj.x, y - obj.y)
+  def -(other)
+    Coord2D.new(x - other.x, y - other.y)
   end
 
-  def ==(obj)
-    x == obj.x && y == obj.y ? true : false
+  def ==(other)
+    x == other.x && y == other.y ? true : false
   end
 end
 
@@ -31,35 +31,35 @@ class Arr2D
   end
 
   def is_available?(coord)
-    @array_2d[coord.x][coord.y].nil? ? true : false
+    @array_2d[coord].nil? ? true : false
   end
 
-  def [](x, y)
+  def [](coord)
     # coordinate look up with []
     # return @board[coord.x][coord.y]
 
-    raise 'Coord out of boundary' unless x >= 0 && x < @dim && y >= 0 && y < @dim
+    raise 'Coord out of boundary' unless coord.x >= 0 && coord.x < @dim && coord.y >= 0 && coord.y < @dim
 
-    @array_2d[x][y]
+    @array_2d[coord.x][coord.y]
   end
 
-  def []=(x, y, val)
+  def []=(coord, val)
     # coordinate set to val with []
     # @board[coord.x][coord.y] = val
-    raise 'Coord out of boundary' unless x >= 0 && x < @dim && y >= 0 && y < @dim
+    raise 'Coord out of boundary' unless coord.x >= 0 && coord.x < @dim && coord.y >= 0 && coord.y < @dim
 
-    @array_2d[x][y] = val
+    @array_2d[coord.x][coord.y] = val
   end
 
   def each
-    @array_2d.each  do |arr| 
+    @array_2d.each do |arr|
       arr.each do |value|
         yield value
       end
     end
   end
 
-  def get_diag
+  def diag
     ## get diagonals
     diag_l_r = [] # \ dir
     diag_r_l = [] # / dir

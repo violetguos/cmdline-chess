@@ -20,7 +20,7 @@ class Game
       curr = get_current_piece(player)
       target = get_destination
 
-      curr_piece = @board[curr.x, curr.y]
+      curr_piece = @board[curr]
       if curr_piece.target_is_valid?(@board, curr, target)
         move(curr, target)
         break
@@ -64,7 +64,7 @@ class Game
 
   def piece_valid?(curr, player)
     begin
-      piece = @board[curr.x, curr.y]
+      piece = @board[curr]
       unless piece.is_colour?(player)
         puts "This is not your piece. Please try again."
       end
@@ -90,7 +90,7 @@ class Game
 
   def destination_valid?(dest)
     begin
-      val = @board[dest.x, dest.y]
+      val = @board[dest]
     rescue => exception
       puts "#{exception}. Please try again"
       return false
@@ -101,11 +101,8 @@ class Game
 
   def move(curr, target)
     # process the positions
-    puts curr
-    puts target
-    curr_piece = @board[curr.x, curr.y]
-    puts curr_piece
-    target_piece = @board[target.x, target.y]
+    curr_piece = @board[curr]
+    target_piece = @board[target]
     if king_castle?(curr_piece, curr, target)
       # move the rook
       castle_move_rook(Coord2D.new(curr.x, 7), Coord2D.new(curr.x, 5))
@@ -115,9 +112,9 @@ class Game
       target_piece.destroy
       target_piece = nil
     end
-    @board[target.x, target.y] = curr_piece
+    @board[target] = curr_piece
     curr_piece.position = target
-    @board[curr.x, curr.y] = nil
+    @board[curr] = nil
     curr_piece.moved = true
   end
 
@@ -131,10 +128,10 @@ class Game
   end
 
   def castle_move_rook(curr, target)
-    rook = @board[curr.x, curr.y]
-    @board[target.x, target.y] = rook 
+    rook = @board[curr]
+    @board[target] = rook 
     rook.moved = true
-    @board[curr.x, curr.y] = nil
+    @board[curr] = nil
   end
 
   def save
