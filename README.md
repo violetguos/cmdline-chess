@@ -4,6 +4,7 @@ A basic chess game on command line.
 
 1. Run `bundle install `
 2. Run `ruby main.rb`
+3. Choose human vs human, human vs AI, or replay a game from Apple's native chess game
 
 ## For Developers
 
